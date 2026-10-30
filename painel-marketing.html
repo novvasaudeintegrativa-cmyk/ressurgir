@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel de Marketing — Ressurgir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: cabeçalho com título editável, faixa de resumo, KPIs de mídia, grade das 10 áreas com checklists, fases de mídia */
+:root {
+  color-scheme: light;
+  --bg: #f1f6f3;
+  --panel: #ffffff;
+  --ink: #14231b;
+  --muted: #56695d;
+  --line: #d3e2d8;
+  --brand: #00c46e;
+  --brand-ink: #04281a;
+  --accent: #00874b;
+  --accent-soft: #dcf5e8;
+  --track: #e1ece5;
+  --good: #2e7d4f;
+  --warn: #b7791f;
+  --bad: #b84a3a;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0f1713; --panel: #16211b; --ink: #e5ece7; --muted: #9aaba0; --line: #283a30;
+    --accent: #2fd98a; --accent-soft: #123526; --track: #233229;
+    --good: #6cc592; --warn: #e0a84a; --bad: #e57c6b;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f1713; --panel: #16211b; --ink: #e5ece7; --muted: #9aaba0; --line: #283a30;
+  --accent: #2fd98a; --accent-soft: #123526; --track: #233229;
+  --good: #6cc592; --warn: #e0a84a; --bad: #e57c6b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 var(--font-body);
+}
+.wrap {
+  max-width: 1180px; margin: 0 auto;
+  padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 28px;
+}
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+h2 { font: 700 20px/1.2 var(--font-display); margin: 0; text-wrap: balance; }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* Cabeçalho */
+header {
+  display: grid; gap: 6px;
+  background: var(--brand); color: var(--brand-ink);
+  border-radius: 14px; padding: 24px clamp(18px, 3vw, 32px);
+}
+header .eyebrow, header .hint { color: var(--brand-ink); opacity: .8; }
+.title-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+#titulo {
+  flex: 1 1 420px; min-width: 0;
+  font: 700 clamp(26px, 4vw, 40px)/1.15 var(--font-display);
+  color: var(--brand-ink); background: transparent;
+  border: 0; border-bottom: 2px dashed color-mix(in srgb, var(--brand-ink) 40%, transparent); padding: 4px 0;
+}
+#titulo:hover { border-bottom-color: var(--brand-ink); }
+#titulo:focus { outline: none; border-bottom: 2px solid var(--brand-ink); }
+#titulo::placeholder { color: var(--brand-ink); opacity: .55; }
+.hint { color: var(--muted); font-size: 13px; }
+
+button, select, input { font: inherit; color: inherit; }
+.btn {
+  border: 1px solid var(--line); background: var(--panel); border-radius: 8px;
+  padding: 6px 12px; cursor: pointer; font-size: 13px;
+}
+.btn:hover { border-color: var(--muted); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Resumo */
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 4px; align-content: start; }
+.stat .val { font: 600 28px/1.1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.stat select { border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; background: var(--bg); font-weight: 600; }
+.bar { height: 8px; background: var(--track); border-radius: 99px; overflow: hidden; }
+.bar > span { display: block; height: 100%; width: 0; background: var(--brand); border-radius: 99px; transition: width .3s; }
+@media (prefers-reduced-motion: reduce) { .bar > span { transition: none; } }
+
+/* KPIs */
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+.kpi-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; min-width: 620px; }
+th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td input {
+  width: 120px; border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px;
+  background: var(--bg); font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+}
+td.calc { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 600; }
+.sub { color: var(--muted); font-size: 12.5px; }
+.pill { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 99px; background: var(--track); color: var(--muted); white-space: nowrap; }
+.pill.good { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+.pill.warn { background: color-mix(in srgb, var(--warn) 18%, transparent); color: var(--warn); }
+.pill.bad  { background: color-mix(in srgb, var(--bad) 16%, transparent); color: var(--bad); }
+.inputs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.inputs-grid label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.inputs-grid input { width: 100%; min-width: 0; border:1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: var(--panel); font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--ink); }
+
+/* Áreas */
+.filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.filters .btn[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); font-weight: 600; }
+#pct-geral { color: var(--accent); }
+.areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; align-items: start; }
+@media (max-width: 420px) { .areas { grid-template-columns: 1fr; } }
+.area { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.area summary { list-style: none; cursor: pointer; padding: 16px; display: grid; gap: 10px; }
+.area summary::-webkit-details-marker { display: none; }
+.area-top { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; }
+.area-name { font: 600 16px/1.3 var(--font-display); display: flex; gap: 10px; }
+.area-name .idx { font-family: var(--font-mono); color: var(--muted); font-weight: 400; }
+.area-goal { color: var(--muted); font-size: 13px; }
+.area-meta { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--muted); }
+.area[open] summary { border-bottom: 1px solid var(--line); }
+.area ul { list-style: none; margin: 0; padding: 8px 8px 12px; display: grid; }
+.area li label { display: flex; gap: 10px; align-items: flex-start; padding: 6px 8px; border-radius: 6px; cursor: pointer; }
+.area li label:hover { background: var(--accent-soft); }
+.area li input { margin-top: 3px; accent-color: var(--brand); flex: none; width: 16px; height: 16px; }
+.area li.done span { color: var(--muted); text-decoration: line-through; }
+.area li[hidden] { display: none; }
+.empty-note { padding: 8px 16px 14px; color: var(--muted); font-size: 13px; }
+
+footer { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="eyebrow">Ressurgir · Entrega de Marketing do lançamento</span>
+    <div class="title-row">
+      <input id="titulo" list="nomes" placeholder="Digite o nome do produto" aria-label="Nome do produto" autocomplete="off">
+      <datalist id="nomes">
+        <option value="Ressurgir BioReset Desparasitação"></option>
+        <option value="Ressurgir BioReset Desparasitação — Os 12 Pilares do Terreno Biológico"></option>
+        <option value="Ressurgir Desparasitação Absoluta — Os 12 Pilares do Terreno Biológico"></option>
+        <option value="Ressurgir Desparasitação Absoluta — Método Equilíbrio e Revitalização"></option>
+        <option value="Ressurgir Integrativo Desparasitação Absoluta — Método Renovação e Bem-Estar"></option>
+        <option value="Ressurgir Reequilíbrio — Método de Equilíbrio do Organismo"></option>
+      </datalist>
+    </div>
+    <span class="hint">Clique no título para escrever o nome ou escolher uma das opções levantadas na reunião.</span>
+  </header>
+
+  <section class="summary" aria-label="Resumo">
+    <div class="stat">
+      <span class="eyebrow">Progresso geral</span>
+      <span class="val" id="pct-geral">0%</span>
+      <div class="bar"><span id="bar-geral"></span></div>
+    </div>
+    <div class="stat">
+      <span class="eyebrow">Entregas concluídas</span>
+      <span class="val" id="qtd-entregas">0 / 0</span>
+      <span class="sub" id="qtd-pend">—</span>
+    </div>
+    <div class="stat">
+      <span class="eyebrow">Áreas concluídas</span>
+      <span class="val" id="qtd-areas">0 / 10</span>
+      <span class="sub" id="area-atrasada">—</span>
+    </div>
+    <div class="stat">
+      <label class="eyebrow" for="fase">Fase atual</label>
+      <select id="fase">
+        <option>Planejamento</option>
+        <option>Estrutura (CRM, tracking, páginas)</option>
+        <option>Produção de conteúdo</option>
+        <option>Etapa 1 — Meta Ads</option>
+        <option>Etapa 2 — Google Ads</option>
+        <option>Carrinho aberto</option>
+        <option>Encerrado</option>
+      </select>
+      <span class="sub">Meta Ads primeiro; Google Ads depois que o Meta estiver rodando.</span>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-areas">
+    <div class="section-head">
+      <h2 id="h-areas">Entregas por área</h2>
+      <div class="filters" role="group" aria-label="Filtrar entregas">
+        <button class="btn" type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+        <button class="btn" type="button" data-filtro="pendentes" aria-pressed="false">Pendentes</button>
+        <button class="btn" type="button" id="abrir-todas">Abrir todas</button>
+      </div>
+    </div>
+    <div class="areas" id="areas"></div>
+  </section>
+
+  <section aria-labelledby="h-fases">
+    <div class="section-head">
+      <h2 id="h-fases">Fases de mídia paga</h2>
+      <span class="sub">Checklist de implantação de cada plataforma.</span>
+    </div>
+    <div class="areas" id="fases"></div>
+  </section>
+
+  <section aria-labelledby="h-kpi">
+    <div class="section-head">
+      <h2 id="h-kpi">Indicadores de mídia</h2>
+      <span class="sub">Preencha os números do período. CPL, CPA, CTR, CPC e ROAS são calculados.</span>
+    </div>
+    <div class="inputs-grid">
+      <label for="k-invest">Investimento (R$)<input id="k-invest" type="number" min="0" step="0.01" inputmode="decimal"></label>
+      <label for="k-impr">Impressões<input id="k-impr" type="number" min="0" step="1" inputmode="numeric"></label>
+      <label for="k-cliques">Cliques<input id="k-cliques" type="number" min="0" step="1" inputmode="numeric"></label>
+      <label for="k-leads">Leads<input id="k-leads" type="number" min="0" step="1" inputmode="numeric"></label>
+      <label for="k-vendas">Vendas<input id="k-vendas" type="number" min="0" step="1" inputmode="numeric"></label>
+      <label for="k-fat">Faturamento (R$)<input id="k-fat" type="number" min="0" step="0.01" inputmode="decimal"></label>
+    </div>
+    <div class="kpi-wrap">
+      <table>
+        <thead><tr><th>Indicador</th><th>Realizado</th><th>Meta</th><th>Situação</th></tr></thead>
+        <tbody id="kpi-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <span id="salvo">O progresso fica salvo neste navegador.</span>
+    <span style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn" type="button" id="exportar">Copiar dados (JSON)</button>
+      <button class="btn" type="button" id="zerar">Zerar painel</button>
+    </span>
+  </footer>
+</div>
+
+<script>
+const AREAS = [
+  { id: "planejamento", nome: "Planejamento estratégico", objetivo: "Uma estratégia sólida para orientar todas as ações do lançamento.", itens: [
+    "Análise do produto, serviço ou infoproduto", "Público-alvo e personas", "Estudo de mercado e concorrentes",
+    "Posicionamento e diferenciais da oferta", "Estratégia de lançamento", "Etapas e cronograma",
+    "Canais de aquisição", "Metas e KPIs", "Jornada do potencial cliente"] },
+  { id: "crm", nome: "CRM e automação", objetivo: "Não perder oportunidades e manter os leads engajados até a oferta.", itens: [
+    "CRM configurado e estruturado", "Integração com landing pages e formulários", "Organização e segmentação dos leads",
+    "Tags e campos personalizados", "Automações configuradas", "Fluxos de nutrição", "E-mails automáticos",
+    "Integração com WhatsApp", "Recuperação de leads parados", "Acompanhamento dos leads no funil"] },
+  { id: "trafego", nome: "Tráfego pago", objetivo: "Atrair pessoas qualificadas e gerar demanda.", itens: [
+    "Plano de mídia e distribuição de orçamento", "Meta Ads configurado", "Google Ads configurado",
+    "Campanhas de reconhecimento", "Campanhas de captação de leads", "Campanhas de remarketing",
+    "Campanhas de aquecimento de audiência", "Campanhas de conversão", "Testes A/B de criativos, públicos e anúncios",
+    "Otimização contínua", "Análise de CPL, CPA, CTR, CPC e ROAS", "Relatórios de desempenho"] },
+  { id: "tracking", nome: "Tracking e dados", objetivo: "Saber de onde vêm os leads e quais campanhas dão resultado.", itens: [
+    "Google Tag Manager", "Google Analytics 4", "Meta Pixel", "Conversion API", "Eventos personalizados",
+    "Rastreamento de visualizações de página", "Rastreamento de formulários enviados", "Rastreamento de leads gerados",
+    "Rastreamento de cliques em botões", "Rastreamento de checkout e compras", "Padrão de UTMs",
+    "Integração dos dados entre plataformas", "Dashboards de acompanhamento"] },
+  { id: "seo", nome: "Orgânico e SEO", objetivo: "Gerar autoridade e reduzir a dependência do tráfego pago.", itens: [
+    "Pesquisa de palavras-chave", "Planejamento de conteúdos estratégicos", "SEO das páginas",
+    "Conteúdo para mecanismos de busca", "Otimização para IA (AEO/GEO)", "Conteúdos educativos",
+    "Distribuição nas plataformas digitais", "Títulos, descrições e conteúdos otimizados",
+    "Estratégia de crescimento orgânico", "Presença digital do especialista ou da marca"] },
+  { id: "social", nome: "Social media", objetivo: "Construir confiança e preparar o público para a oferta.", itens: [
+    "Planejamento editorial", "Calendário de publicações", "Pilares de conteúdo", "Posts para feed",
+    "Conteúdos para Stories", "Planejamento de Reels", "Conteúdos educativos e informativos",
+    "Conteúdos de autoridade", "Conteúdos de conexão e relacionamento", "Conteúdos de antecipação",
+    "Conteúdos de quebra de objeções", "Publicações no período de lançamento", "Monitoramento de engajamento e alcance"] },
+  { id: "copy", nome: "Copywriting e comunicação", objetivo: "Mensagem clara e consistente em todos os pontos de contato.", itens: [
+    "Comunicação central do lançamento", "Promessa e proposta de valor", "Argumentos de venda",
+    "Headlines e chamadas", "Copy para anúncios", "Copy para landing pages", "Copy para página de vendas",
+    "Copy para e-mails", "Copy para WhatsApp e automações", "Roteiros para vídeos", "Roteiros para Reels",
+    "Textos para Stories", "Conteúdos de antecipação", "Abertura e encerramento das inscrições",
+    "Recuperação de leads e carrinhos"] },
+  { id: "landing", nome: "Landing pages", objetivo: "Transformar o tráfego em uma base de contatos qualificada.", itens: [
+    "Estrutura das páginas", "Desenvolvimento visual e funcional", "Headlines", "Formulários de captura",
+    "CTAs", "Integração com CRM", "Automações", "Códigos de rastreamento", "Versão mobile",
+    "Testes de usabilidade e velocidade", "Testes de conversão", "Página de inscrição", "Página de lista de espera",
+    "Página de cadastro para evento", "Página de confirmação", "Página de obrigado", "Página de acesso a materiais"] },
+  { id: "vendas", nome: "Página de vendas", objetivo: "Uma experiência de compra clara e otimizada para conversão.", itens: [
+    "Arquitetura da página", "Layout", "Narrativa de vendas", "Apresentação do produto ou método",
+    "Benefícios e diferenciais", "Provas sociais autorizadas", "Apresentação da oferta", "Bônus",
+    "Garantia e condições comerciais", "Perguntas frequentes", "CTAs", "Integração com checkout",
+    "Eventos de conversão", "Versão mobile", "Testes de funcionamento e conversão"] },
+  { id: "videos", nome: "Edição e produção de vídeos", objetivo: "Materiais que atraem atenção e melhoram as campanhas.", itens: [
+    "Vídeos para anúncios", "Reels", "Vídeos para Stories", "Vídeos educativos", "Vídeos de autoridade",
+    "Vídeos de antecipação", "Vídeos de apresentação da oferta", "Depoimentos autorizados",
+    "Cortes de vídeos longos", "Legendas", "Tratamento de áudio", "Elementos gráficos e animações",
+    "Adaptação de formatos por plataforma", "Variações criativas para testes"] }
+];
+
+const FASES = [
+  { id: "meta", nome: "Etapa 1 — Meta Ads", objetivo: "Toda a aquisição começa no Facebook e Instagram.", itens: [
+    "Análise do público-alvo e personas", "Planejamento das campanhas", "Business Manager configurado",
+    "Conta de anúncios configurada", "Meta Pixel instalado", "Conversion API (CAPI)",
+    "Eventos de conversão validados", "Públicos personalizados", "Públicos semelhantes (Lookalike)",
+    "Campanhas de captação de leads", "Campanhas de reconhecimento e aquecimento", "Campanhas de remarketing",
+    "Criativos e copies", "Testes A/B de anúncios e públicos", "Monitoramento e otimização contínua"] },
+  { id: "google", nome: "Etapa 2 — Google Ads", objetivo: "Ampliar os canais depois que o Meta estiver rodando.", itens: [
+    "Pesquisa de palavras-chave", "Análise da intenção de busca", "Planejamento de campanhas",
+    "Conta Google Ads configurada", "Integração com GA4 e GTM", "Conversões configuradas",
+    "Campanhas de Pesquisa (Search)", "Campanhas de Display", "Campanhas de YouTube",
+    "Estratégias de remarketing", "Anúncios e extensões", "Otimização de palavras-chave e termos",
+    "Controle de orçamento e lances", "Monitoramento de CPL, CPA e conversões"] }
+];
+
+// menor = melhor para custos; maior = melhor para taxas e retorno
+const KPIS = [
+  { id: "cpl",  nome: "CPL", desc: "Custo por lead", fmt: "brl", melhor: "menor", calc: k => k.invest / k.leads },
+  { id: "cpa",  nome: "CPA", desc: "Custo por venda", fmt: "brl", melhor: "menor", calc: k => k.invest / k.vendas },
+  { id: "ctr",  nome: "CTR", desc: "Cliques ÷ impressões", fmt: "pct", melhor: "maior", calc: k => k.cliques / k.impr * 100 },
+  { id: "cpc",  nome: "CPC", desc: "Custo por clique", fmt: "brl", melhor: "menor", calc: k => k.invest / k.cliques },
+  { id: "conv", nome: "Conversão de leads", desc: "Vendas ÷ leads", fmt: "pct", melhor: "maior", calc: k => k.vendas / k.leads * 100 },
+  { id: "roas", nome: "ROAS", desc: "Faturamento ÷ investimento", fmt: "x", melhor: "maior", calc: k => k.fat / k.invest }
+];
+
+const CHAVE = "ressurgir-painel-marketing-v1";
+const vazio = () => ({ titulo: "", fase: "Planejamento", feitos: {}, kpi: {}, metas: {} });
+let estado = vazio();
+try { const s = localStorage.getItem(CHAVE); if (s) estado = Object.assign(vazio(), JSON.parse(s)); } catch (e) {}
+
+function salvar() {
+  try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {}
+  const h = new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  document.getElementById("salvo").textContent = "Salvo neste navegador às " + h + ".";
+}
+
+const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+const dec = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 2 });
+function formatar(v, fmt) {
+  if (!isFinite(v)) return "—";
+  if (fmt === "brl") return brl.format(v);
+  if (fmt === "pct") return dec.format(v) + "%";
+  return dec.format(v) + "x";
+}
+
+// Título
+const titulo = document.getElementById("titulo");
+titulo.value = estado.titulo;
+function aplicarTitulo() {
+  document.title = (estado.titulo ? estado.titulo + " · " : "") + "Painel de Marketing — Ressurgir";
+}
+titulo.addEventListener("input", () => { estado.titulo = titulo.value; aplicarTitulo(); salvar(); });
+aplicarTitulo();
+
+// Fase
+const fase = document.getElementById("fase");
+fase.value = estado.fase;
+fase.addEventListener("change", () => { estado.fase = fase.value; salvar(); });
+
+// Áreas e fases
+let filtro = "todas";
+function montar(lista, alvo, numerar) {
+  const raiz = document.getElementById(alvo);
+  lista.forEach((a, i) => {
+    const d = document.createElement("details");
+    d.className = "area"; d.dataset.area = a.id;
+    const s = document.createElement("summary");
+    s.innerHTML = '<div class="area-top"><span class="area-name"></span><span class="pill"></span></div>' +
+      '<span class="area-goal"></span><div class="bar"><span></span></div>' +
+      '<div class="area-meta"><span class="cont num"></span><span class="pct num"></span></div>';
+    const nome = s.querySelector(".area-name");
+    if (numerar) { const n = document.createElement("span"); n.className = "idx"; n.textContent = String(i + 1).padStart(2, "0"); nome.append(n); }
+    nome.append(document.createTextNode(a.nome));
+    s.querySelector(".area-goal").textContent = a.objetivo;
+    d.append(s);
+    const ul = document.createElement("ul");
+    a.itens.forEach((txt, j) => {
+      const id = a.id + "-" + j;
+      const li = document.createElement("li");
+      const lb = document.createElement("label");
+      const cb = document.createElement("input");
+      cb.type = "checkbox"; cb.id = "c-" + id; cb.checked = !!estado.feitos[id];
+      cb.addEventListener("change", () => {
+        if (cb.checked) estado.feitos[id] = true; else delete estado.feitos[id];
+        salvar(); atualizar();
+      });
+      const sp = document.createElement("span"); sp.textContent = txt;
+      lb.append(cb, sp); li.append(lb); ul.append(li);
+    });
+    d.append(ul);
+    const nota = document.createElement("div");
+    nota.className = "empty-note"; nota.textContent = "Todas as entregas desta área estão concluídas."; nota.hidden = true;
+    d.append(nota);
+    raiz.append(d);
+  });
+}
+montar(AREAS, "areas", true);
+montar(FASES, "fases", false);
+
+function statusDe(feitos, total) {
+  if (feitos === 0) return ["Não iniciado", ""];
+  if (feitos === total) return ["Concluído", "good"];
+  return ["Em andamento", "warn"];
+}
+
+function atualizar() {
+  let tot = 0, ok = 0, areasOk = 0, menor = null;
+  [...AREAS, ...FASES].forEach(a => {
+    const d = document.querySelector('[data-area="' + a.id + '"]');
+    let f = 0;
+    d.querySelectorAll("li").forEach((li, j) => {
+      const feito = !!estado.feitos[a.id + "-" + j];
+      if (feito) f++;
+      li.classList.toggle("done", feito);
+      li.hidden = filtro === "pendentes" && feito;
+    });
+    const pct = Math.round(f / a.itens.length * 100);
+    d.querySelector(".bar > span").style.width = pct + "%";
+    d.querySelector(".cont").textContent = f + " de " + a.itens.length + " entregas";
+    d.querySelector(".pct").textContent = pct + "%";
+    const [rot, cls] = statusDe(f, a.itens.length);
+    const pill = d.querySelector(".pill"); pill.textContent = rot; pill.className = "pill " + cls;
+    d.querySelector(".empty-note").hidden = !(filtro === "pendentes" && f === a.itens.length);
+    if (AREAS.includes(a)) {
+      tot += a.itens.length; ok += f;
+      if (f === a.itens.length) areasOk++;
+      if (!menor || pct < menor.pct) menor = { nome: a.nome, pct };
+    }
+  });
+  const pg = tot ? Math.round(ok / tot * 100) : 0;
+  document.getElementById("pct-geral").textContent = pg + "%";
+  document.getElementById("bar-geral").style.width = pg + "%";
+  document.getElementById("qtd-entregas").textContent = ok + " / " + tot;
+  document.getElementById("qtd-pend").textContent = (tot - ok) + " pendentes nas 10 áreas";
+  document.getElementById("qtd-areas").textContent = areasOk + " / " + AREAS.length;
+  document.getElementById("area-atrasada").textContent = menor && menor.pct < 100 ? "Menos avançada: " + menor.nome + " (" + menor.pct + "%)" : "Todas as áreas concluídas";
+}
+
+// KPIs
+const CAMPOS = ["invest", "impr", "cliques", "leads", "vendas", "fat"];
+CAMPOS.forEach(c => {
+  const el = document.getElementById("k-" + c);
+  if (estado.kpi[c] != null) el.value = estado.kpi[c];
+  el.addEventListener("input", () => {
+    if (el.value === "") delete estado.kpi[c]; else estado.kpi[c] = Number(el.value);
+    salvar(); atualizarKpis();
+  });
+});
+const corpo = document.getElementById("kpi-body");
+KPIS.forEach(k => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = '<td><strong></strong><div class="sub"></div></td><td class="calc"></td><td></td><td><span class="pill"></span></td>';
+  tr.querySelector("strong").textContent = k.nome;
+  tr.querySelector(".sub").textContent = k.desc + (k.melhor === "menor" ? " · quanto menor, melhor" : " · quanto maior, melhor");
+  const inp = document.createElement("input");
+  inp.type = "number"; inp.min = "0"; inp.step = "0.01"; inp.id = "meta-" + k.id; inp.inputMode = "decimal";
+  inp.setAttribute("aria-label", "Meta de " + k.nome);
+  inp.placeholder = "definir";
+  if (estado.metas[k.id] != null) inp.value = estado.metas[k.id];
+  inp.addEventListener("input", () => {
+    if (inp.value === "") delete estado.metas[k.id]; else estado.metas[k.id] = Number(inp.value);
+    salvar(); atualizarKpis();
+  });
+  tr.children[2].append(inp);
+  tr.dataset.kpi = k.id;
+  corpo.append(tr);
+});
+function atualizarKpis() {
+  const v = {}; CAMPOS.forEach(c => v[c] = estado.kpi[c] ?? NaN);
+  KPIS.forEach(k => {
+    const tr = corpo.querySelector('[data-kpi="' + k.id + '"]');
+    const r = k.calc(v);
+    tr.querySelector(".calc").textContent = formatar(r, k.fmt);
+    const pill = tr.querySelector(".pill");
+    const meta = estado.metas[k.id];
+    if (!isFinite(r)) { pill.textContent = "Sem dados"; pill.className = "pill"; return; }
+    if (meta == null) { pill.textContent = "Sem meta"; pill.className = "pill"; return; }
+    const bate = k.melhor === "menor" ? r <= meta : r >= meta;
+    const perto = k.melhor === "menor" ? r <= meta * 1.15 : r >= meta * 0.85;
+    if (bate) { pill.textContent = "Dentro da meta"; pill.className = "pill good"; }
+    else if (perto) { pill.textContent = "Perto da meta"; pill.className = "pill warn"; }
+    else { pill.textContent = "Fora da meta"; pill.className = "pill bad"; }
+  });
+}
+
+// Filtros e ações
+document.querySelectorAll("[data-filtro]").forEach(b => b.addEventListener("click", () => {
+  filtro = b.dataset.filtro;
+  document.querySelectorAll("[data-filtro]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  atualizar();
+}));
+const abrir = document.getElementById("abrir-todas");
+abrir.addEventListener("click", () => {
+  const todas = document.querySelectorAll("details.area");
+  const fechar = [...todas].every(d => d.open);
+  todas.forEach(d => d.open = !fechar);
+  abrir.textContent = fechar ? "Abrir todas" : "Fechar todas";
+});
+document.getElementById("exportar").addEventListener("click", async () => {
+  const txt = JSON.stringify(estado, null, 2);
+  try { await navigator.clipboard.writeText(txt); document.getElementById("salvo").textContent = "Dados copiados para a área de transferência."; }
+  catch (e) { document.getElementById("salvo").textContent = "Não foi possível copiar neste navegador."; }
+});
+const zerar = document.getElementById("zerar");
+let armado = false;
+zerar.addEventListener("click", () => {
+  if (!armado) { armado = true; zerar.textContent = "Clique de novo para zerar"; setTimeout(() => { armado = false; zerar.textContent = "Zerar painel"; }, 4000); return; }
+  estado = vazio();
+  try { localStorage.removeItem(CHAVE); } catch (e) {}
+  location.reload();
+});
+
+atualizar();
+atualizarKpis();
+</script>
+</body>
+</html>
