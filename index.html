@@ -165,9 +165,9 @@ nav { background: rgba(0, 38, 44, .92); border-bottom: 1px solid rgba(255, 255, 
 nav .btn-primary, .hero .btn-primary, .cta .btn-primary { background: linear-gradient(90deg, #00dcc0, #7af0dc); border-color: transparent; color: #00262c; font-weight: 600; }
 nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { background: #7af0dc; }
 .vsl { border-color: rgba(255, 255, 255, .15); }
-#pilares { padding: 0; background: #00454d url("assets/cena-mulher-final.jpg") center / cover no-repeat; }
+#pilares { padding: clamp(56px, 8vw, 110px) 16px; background: #fff; }
 /* Cena dos pilares: layout da referência; ícones e textos são elementos da página */
-.stage { container-type: inline-size; position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; background: none; }
+.stage { container-type: inline-size; position: relative; width: min(1120px, 100%); margin: 0 auto; aspect-ratio: 16 / 9; border-radius: 20px; background: #00454d url("assets/cena-mulher-final.jpg") center / cover no-repeat; box-shadow: var(--shadow-2); }
 .stage svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .stage .tx { position: absolute; color: #fff; pointer-events: none; text-shadow: 0 2px 14px rgba(0, 25, 30, .55); }
 .stage .tx h3 { font: 700 3.3cqw/.95 var(--font); letter-spacing: -.02em; text-transform: uppercase; color: #fff; }
@@ -183,7 +183,7 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .node .dot svg { width: 56%; height: 56%; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .node .dot em { position: absolute; top: -.5cqw; left: -.5cqw; min-width: 18px; width: 1.9cqw; height: 1.9cqw; border-radius: 50%; background: var(--brand); color: #00262c; font: 700 max(10px, 1cqw)/1.9cqw var(--font); text-align: center; font-style: normal; }
 .node:hover .dot, .node:focus-within .dot, .node.open .dot { transform: scale(1.35); background: var(--brand); color: #00262c; }
-.node .lab { display: block; margin: .5cqw auto 0; width: max-content; max-width: 10.5cqw; text-align: center; font: 600 max(10.5px, .98cqw)/1.15 var(--font); letter-spacing: 0; color: #fff; background: rgba(0, 38, 44, .6); padding: .25cqw .8cqw; border-radius: 1cqw; transition: opacity .2s; }
+.node .lab { display: block; margin: .5cqw auto 0; width: max-content; max-width: 9cqw; text-align: center; font: 600 max(10px, .85cqw)/1.15 var(--font); letter-spacing: 0; color: #fff; background: rgba(0, 38, 44, .6); padding: .25cqw .8cqw; border-radius: 1cqw; transition: opacity .2s; }
 .node:hover .lab, .node:focus-within .lab, .node.open .lab { opacity: 0; }
 .node .pop { position: absolute; top: calc(100% + 14px); left: 50%; width: 280px; transform: translate(-50%, 6px); opacity: 0; visibility: hidden; transition: opacity .2s, transform .2s; background: rgba(0, 38, 44, .97); border: 1px solid var(--brand); border-radius: 14px; padding: 14px 16px 16px; color: #fff; text-align: left; box-shadow: var(--shadow-2); }
 .node .pop b { display: block; font: 700 16px/1.25 var(--font); color: var(--brand); margin-bottom: 6px; }
@@ -193,18 +193,16 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .node.r .pop { left: auto; right: 0; transform: translate(0, 6px); }
 .node.l:hover .pop, .node.l:focus-within .pop, .node.l.open .pop, .node.r:hover .pop, .node.r:focus-within .pop, .node.r.open .pop { transform: none; }
 .node.up .pop { top: auto; bottom: calc(100% + 14px); }
-.node.top { display: flex; flex-direction: column-reverse; align-items: center; }
-.node.top .lab { margin: 0 0 .5cqw; }
+.node.top .lab { position: absolute; top: 50%; margin: 0; transform: translateY(-50%); }
+.node.top.tl .lab { right: calc(100% + .6cqw); }
+.node.top.tr .lab { left: calc(100% + .6cqw); }
 .stage-grid, .stage-info { display: none; }
 @media (max-width: 760px) {
-  #pilares { background-position: 50% 0; background-size: auto 62vw; background-size: cover; }
-  .stage { aspect-ratio: 4 / 5; }
+  #pilares { padding: 24px 16px 8px; }
+  .stage { aspect-ratio: 4 / 5; border-radius: 16px; }
     .stage svg.lines, .stage .blk, .node { display: none; }
   .stage .tx { left: 5% !important; top: auto !important; bottom: 5%; }
   .stage .tx h3 { font-size: 9cqw; } .stage .tx p { font-size: 4cqw; max-width: 60cqw; }
-  #pilares { background: var(--brand-dark); }
-  #pilares::before { content: ""; display: block; aspect-ratio: 4 / 5; position: absolute; left: 0; right: 0; top: 0; background: url("assets/cena-mulher-final.jpg") 50% 50% / cover no-repeat; }
-  .stage { position: relative; }
   .stage-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 12px 0; }
   .stage-grid button { position: relative; aspect-ratio: 1; border-radius: 50%; border: 2px solid var(--brand); background: var(--brand-dark); color: var(--brand); display: grid; place-items: center; padding: 0; cursor: pointer; }
   .stage-grid button svg { width: 56%; height: 56%; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
@@ -240,7 +238,7 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .hs-card.dark p { color: rgba(255, 255, 255, .8); }
 .hs-card .big { position: absolute; right: 18px; bottom: -14px; font: 700 130px/1 var(--font); letter-spacing: -.04em; color: currentColor; opacity: .07; pointer-events: none; }
 /* modo preso: a rolagem vertical empurra a trilha para a direita */
-.js .hscroll.pinned .hs-sticky { position: sticky; top: 0; height: 100vh; align-content: center; gap: 18px; padding: 72px 0 24px; overflow: hidden; }
+.js .hscroll.pinned .hs-sticky { position: sticky; top: 0; height: 100vh; align-content: start; gap: 18px; padding: 96px 0 24px; overflow: hidden; }
 .js .hscroll.pinned .hs-viewport { overflow: visible; }
 .js .hscroll.pinned .hs-track { will-change: transform; }
 .trust { background: var(--brand-dark); border: 0; }
@@ -520,7 +518,7 @@ const TEXTOS = [
   const CURTOS = ["Genética e epigenética", "Conflitos emocionais", "Toxinas ambientais", "Hidratação e água", "Metais tóxicos", "Saúde gastrointestinal", "Fungos e parasitas", "Carências nutricionais", "Imunidade e circulação", "Saúde mitocondrial", "Tríade hormonal", "Conflitos sistêmicos"];
   // [x do ícone, y do ícone, x do ponto, y do ponto] numa grade de 1600 x 900
   // 12 ícones em um círculo perfeito (grade 1600 x 900, círculo no centro da mulher)
-  const CX = 800, CY = 470, R = 380, RD = 190;
+  const CX = 800, CY = 465, R = 355, RD = 175;
   const POS = Array.from({ length: 12 }, (_, i) => {
     const a = (-105 + i * 30) * Math.PI / 180, c = Math.cos(a), sn = Math.sin(a);
     return [CX + R * c, CY + R * sn, CX + RD * c, CY + RD * sn];
@@ -549,10 +547,10 @@ const TEXTOS = [
     c.setAttribute("cx", tx); c.setAttribute("cy", ty); c.setAttribute("r", "7"); c.setAttribute("fill", "#00dcc0");
     svg.append(c);
     const n = document.createElement("div");
-    n.className = "node" + (x < 500 ? " l" : x > 1100 ? " r" : "") + (y > 650 ? " up" : "") + (y < 200 ? " top" : "");
+    n.className = "node" + (x < 500 ? " l" : x > 1100 ? " r" : "") + (y > 650 ? " up" : "") + (y < 200 ? " top " + (x < 800 ? "tl" : "tr") : "");
     n.style.left = (x / 16).toFixed(2) + "%"; n.style.top = (y / 9).toFixed(2) + "%";
     n.innerHTML = '<button class="dot" type="button" aria-label="' + (i + 1) + ". " + nome + '"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i' + (i + 1) + '"/></svg><em>' + (i + 1) + '</em></button><span class="lab"></span><div class="pop" role="tooltip"><b></b><span></span></div>';
-    n.querySelector(".lab").textContent = (i + 1) + ". " + CURTOS[i];
+    n.querySelector(".lab").textContent = CURTOS[i];
     n.querySelector(".pop b").textContent = (i + 1) + ". " + nome;
     n.querySelector(".pop span").textContent = TEXTOS[i];
     n.addEventListener("mouseenter", () => mostrar(i));
@@ -578,7 +576,7 @@ const TEXTOS = [
     ".table-wrap", ".offer .center", ".card", ".step", ".cta .wrap > *", "footer .wrap > *"];
   const els = [];
   alvos.forEach(sel => document.querySelectorAll(sel).forEach(e => {
-    if (e.classList.contains("reveal")) return;
+    if (e.classList.contains("reveal") || e.closest(".hscroll")) return;
     const irmaos = [...e.parentElement.children].filter(c => c.matches(sel));
     e.style.setProperty("--d", Math.min(irmaos.indexOf(e), 6) * 80 + "ms");
     e.classList.add("reveal"); els.push(e);
