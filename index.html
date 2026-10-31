@@ -303,6 +303,23 @@ html, body { overflow-x: clip; }
 .hscroll { overflow-x: clip; }
 .hs-sticky .hs-title { position: relative; isolation: isolate; }
 .hs-sticky .hs-title::before { content: "12"; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: -1; font: 800 clamp(220px, 30vw, 440px)/.8 var(--font); letter-spacing: -.05em; color: var(--brand-strong); opacity: .09; pointer-events: none; white-space: nowrap; }
+
+/* Pilares aparecem um a um (1 a 12) quando a cena entra na tela; só opacity/scale, leve para o navegador */
+.js .stage .node { opacity: 0; transition: opacity .5s ease var(--d, 0ms); }
+.js .stage .lines line, .js .stage .lines circle { opacity: 0; transition: opacity .5s ease var(--d, 0ms); }
+.js .stage .node .dot { scale: .45; }
+.js .stage.go .node { opacity: 1; }
+.js .stage.go .lines line { opacity: .85; }
+.js .stage.go .lines circle { opacity: 1; }
+.js .stage.go .node .dot { scale: 1; transition: scale .55s cubic-bezier(.2, .9, .3, 1.25) var(--d, 0ms), transform .25s cubic-bezier(.2, .8, .2, 1), background .2s, color .2s; }
+@media (prefers-reduced-motion: reduce) { .js .stage .node, .js .stage .lines line, .js .stage .lines circle, .js .stage .node .dot { transition: none !important; scale: 1; opacity: 1; } }
+
+/* Pontos de luz na mulher: piscam um a um (só opacity/transform, leve) */
+.luz { position: absolute; left: var(--lx, 50%); top: var(--ly); width: 2.4cqw; height: 2.4cqw; margin: -1.2cqw 0 0 -1.2cqw; border-radius: 50%; background: radial-gradient(circle, #fff 0 12%, var(--c) 30%, transparent 70%); mix-blend-mode: screen; opacity: 0; transform: scale(.6); pointer-events: none; z-index: 1; }
+.js .stage.go .luz { animation: pisca 6.3s ease-in-out infinite; animation-delay: calc(var(--k) * .9s); }
+@keyframes pisca { 0% { opacity: 0; transform: scale(.6); } 6% { opacity: 1; transform: scale(1.7); } 14% { opacity: .55; transform: scale(1.15); } 22% { opacity: .9; transform: scale(1.5); } 34% { opacity: 0; transform: scale(.6); } 100% { opacity: 0; transform: scale(.6); } }
+@media (max-width: 760px) { .luz { left: var(--lxm, 49.5%); top: var(--lym); width: 7cqw; height: 7cqw; margin: -3.5cqw 0 0 -3.5cqw; } }
+@media (prefers-reduced-motion: reduce) { .js .stage.go .luz { animation: none; opacity: .5; transform: scale(1); } }
 </style>
 </head>
 <body>
@@ -557,6 +574,14 @@ const TEXTOS = [
   anel.setAttribute("fill", "none"); anel.setAttribute("stroke", "#00dcc0"); anel.setAttribute("stroke-opacity", ".35"); anel.setAttribute("stroke-width", "2"); anel.setAttribute("stroke-dasharray", "2 9"); anel.setAttribute("stroke-linecap", "round");
   svg.append(anel);
   stage.prepend(svg);
+  // pontos de luz da imagem (cor da luz de cada um), posição em % da cena
+  const LUZES = [["#b866ff", 28, 24], ["#6a5cff", 31.5, 26.2], ["#3aa0ff", 35.6, 29.5], ["#3df06a", 39.2, 31.7], ["#ffe23a", 44, 34.6], ["#ff9a2e", 47.3, 37], ["#ff3b3b", 51, 39.5]];
+  LUZES.forEach(([cor, yd, ym], k) => {
+    const l = document.createElement("span");
+    l.className = "luz"; l.style.setProperty("--c", cor); l.style.setProperty("--k", k);
+    l.style.setProperty("--ly", yd + "%"); l.style.setProperty("--lym", ym + "%");
+    stage.append(l);
+  });
   const nodes = [];
   const MOB = [[13, 17], [33, 17], [67, 17], [87, 17], [14, 42], [14, 52], [14, 62], [14, 72], [86, 42], [86, 52], [86, 62], [86, 72]];
   const mostrar = () => {};
@@ -565,13 +590,17 @@ const TEXTOS = [
     const ln = document.createElementNS(svgNS, "line");
     ln.setAttribute("x1", x); ln.setAttribute("y1", y); ln.setAttribute("x2", tx); ln.setAttribute("y2", ty);
     ln.setAttribute("stroke", "#00dcc0"); ln.setAttribute("stroke-width", "2"); ln.setAttribute("opacity", ".85");
+    const atraso = (i * 380) + "ms";
+    ln.style.setProperty("--d", atraso);
     svg.append(ln);
     const c = document.createElementNS(svgNS, "circle");
     c.setAttribute("cx", tx); c.setAttribute("cy", ty); c.setAttribute("r", "7"); c.setAttribute("fill", "#00dcc0");
+    c.style.setProperty("--d", atraso);
     svg.append(c);
     const n = document.createElement("div");
     n.className = "node" + (x < 500 ? " l" : x > 1100 ? " r" : "") + (y > 650 ? " up" : "") + (y < 200 ? " top " + (x < 800 ? "tl" : "tr") : "");
     n.style.left = (x / 16).toFixed(2) + "%"; n.style.top = (y / 9).toFixed(2) + "%";
+    n.style.setProperty("--d", atraso);
     n.style.setProperty("--mx", MOB[i][0] + "%"); n.style.setProperty("--my", MOB[i][1] + "%");
     n.innerHTML = '<button class="dot" type="button" aria-label="' + (i + 1) + ". " + nome + '"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i' + (i + 1) + '"/></svg><em>' + (i + 1) + '</em></button><span class="lab"></span><div class="pop" role="tooltip"><b></b><span></span></div>';
     n.querySelector(".lab").textContent = CURTOS[i];
@@ -587,6 +616,10 @@ const TEXTOS = [
     });
     stage.append(n); nodes.push(n);
   });
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { stage.classList.add("go"); io.disconnect(); } }), { threshold: .35 });
+    io.observe(stage);
+  } else stage.classList.add("go");
   document.addEventListener("click", e => { if (!e.target.closest(".node")) nodes.forEach(o => o.classList.remove("open")); });
 })();
 // Elementos surgem ao rolar a página
