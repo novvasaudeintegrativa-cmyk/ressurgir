@@ -171,6 +171,9 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .stage svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .stage .tx { position: absolute; color: #fff; pointer-events: none; text-shadow: 0 2px 14px rgba(0, 25, 30, .55); }
 .stage .tx h3 { font: 700 3.3cqw/.95 var(--font); letter-spacing: -.02em; text-transform: uppercase; color: #fff; }
+.stage::before { content: ""; position: absolute; inset: 0 auto auto 0; width: 46%; height: 42%; background: radial-gradient(ellipse at 0 0, rgba(0, 38, 44, .72), rgba(0, 38, 44, 0) 72%); pointer-events: none; }
+.stage .tx { left: 3cqw; top: 3.4cqw; }
+.stage .tx h3 b { font-weight: 800; color: var(--brand); }
 .stage .tx h3 em { display: block; font-style: normal; font-weight: 300; font-size: .62em; letter-spacing: .08em; margin-top: .5cqw; }
 .stage .tx i { display: block; width: 7cqw; height: 2px; background: var(--brand); margin: 1.2cqw 0; }
 .stage .tx p { font: 300 1.3cqw/1.4 var(--font); max-width: 19cqw; }
@@ -209,6 +212,10 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
   .node.top .lab { position: static; transform: none; margin-top: 4px; }
   .node.top { display: block; }
   .stage .zt { display: block; }
+  .stage::before { width: 100%; height: 22%; background: linear-gradient(180deg, rgba(0, 38, 44, .7), rgba(0, 38, 44, 0)); }
+  .stage .tx { left: 0; right: 0; top: 2.5%; text-align: center; }
+  .stage .tx h3 { font-size: 9.5cqw; }
+  .stage .tx i, .stage .tx p { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .node .dot, .node .pop { transition: none; } }
 
@@ -350,8 +357,9 @@ footer .logo .lw > span { color: var(--accent); }
 
 <section id="pilares" aria-label="Os 12 pilares do terreno biológico">
   <div class="stage" id="stage" role="group" aria-label="Os 12 pilares do terreno biológico">
+    <div class="tx"><h3>Os <b>12 Pilares</b><em>do Terreno Biológico</em></h3><i></i><p>Além do que se vê, o que realmente importa.</p></div>
     <div class="blk" style="top:14%"><b>Na superfície</b><span>Apenas parte do quadro aparece.</span></div>
-    <span class="zt" style="top:8%">NA SUPERFÍCIE</span><span class="zt" style="top:38%">NA PROFUNDIDADE</span>
+    <span class="zt" style="top:13%">NA SUPERFÍCIE</span><span class="zt" style="top:38%">NA PROFUNDIDADE</span>
     <div class="blk" style="top:55%"><b>Na profundidade</b><span>Muitas causas ficam ocultas e não são investigadas.</span></div>
   </div>
 </section>
