@@ -6,40 +6,41 @@
 <title>Painel de Marketing — Ressurgir</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
 /* Layout: cabeçalho com título editável, faixa de resumo, KPIs de mídia, grade das 10 áreas com checklists, fases de mídia */
 :root {
   color-scheme: light;
-  --bg: #f1f6f3;
+  --bg: #f1f8f7;
   --panel: #ffffff;
-  --ink: #14231b;
-  --muted: #56695d;
-  --line: #d3e2d8;
-  --brand: #00c46e;
-  --brand-ink: #04281a;
-  --accent: #00874b;
-  --accent-soft: #dcf5e8;
-  --track: #e1ece5;
+  --ink: #00262c;
+  --muted: #4c6b6e;
+  --line: #d6e6e3;
+  --brand: #00dcc0;
+  --brand-strong: #00716f;
+  --brand-ink: #ffffff;
+  --accent: #00857f;
+  --accent-soft: #dff6f2;
+  --track: #dcebe8;
   --good: #2e7d4f;
   --warn: #b7791f;
   --bad: #b84a3a;
-  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Outfit", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Outfit", "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #0f1713; --panel: #16211b; --ink: #e5ece7; --muted: #9aaba0; --line: #283a30;
-    --accent: #2fd98a; --accent-soft: #123526; --track: #233229;
+    --bg: #0b1020; --panel: #131a2e; --ink: #e6e9f5; --muted: #9aa4c2; --line: #252d47;
+    --accent: #5fe6d2; --accent-soft: #0f3a3a; --track: #1e2640;
     --good: #6cc592; --warn: #e0a84a; --bad: #e57c6b;
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0f1713; --panel: #16211b; --ink: #e5ece7; --muted: #9aaba0; --line: #283a30;
-  --accent: #2fd98a; --accent-soft: #123526; --track: #233229;
+  --bg: #0b1020; --panel: #131a2e; --ink: #e6e9f5; --muted: #9aa4c2; --line: #252d47;
+  --accent: #5fe6d2; --accent-soft: #0f3a3a; --track: #1e2640;
   --good: #6cc592; --warn: #e0a84a; --bad: #e57c6b;
 }
 * { box-sizing: border-box; }
@@ -55,20 +56,20 @@ body {
   display: grid; gap: 28px;
 }
 .eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-h2 { font: 700 20px/1.2 var(--font-display); margin: 0; text-wrap: balance; }
+h2 { font: 600 20px/1.2 var(--font-display); margin: 0; text-wrap: balance; }
 .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
 /* Cabeçalho */
 header {
   display: grid; gap: 6px;
-  background: var(--brand); color: var(--brand-ink);
+  background: linear-gradient(165deg, #00454d, #007a78); color: var(--brand-ink);
   border-radius: 14px; padding: 24px clamp(18px, 3vw, 32px);
 }
 header .eyebrow, header .hint { color: var(--brand-ink); opacity: .8; }
 .title-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 #titulo {
   flex: 1 1 420px; min-width: 0;
-  font: 700 clamp(26px, 4vw, 40px)/1.15 var(--font-display);
+  font: 700 clamp(17px, 2.2vw, 24px)/1.2 var(--font-display);
   color: var(--brand-ink); background: transparent;
   border: 0; border-bottom: 2px dashed color-mix(in srgb, var(--brand-ink) 40%, transparent); padding: 4px 0;
 }
@@ -117,7 +118,7 @@ td.calc { font-family: var(--font-mono); font-variant-numeric: tabular-nums; fon
 
 /* Áreas */
 .filters { display: flex; gap: 6px; flex-wrap: wrap; }
-.filters .btn[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); font-weight: 600; }
+.filters .btn[aria-pressed="true"] { background: var(--brand-strong); border-color: var(--brand-strong); color: var(--brand-ink); font-weight: 600; }
 #pct-geral { color: var(--accent); }
 .areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; align-items: start; }
 @media (max-width: 420px) { .areas { grid-template-columns: 1fr; } }
@@ -149,12 +150,12 @@ footer { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-betwee
     <div class="title-row">
       <input id="titulo" list="nomes" placeholder="Digite o nome do produto" aria-label="Nome do produto" autocomplete="off">
       <datalist id="nomes">
-        <option value="Ressurgir BioReset Desparasitação"></option>
-        <option value="Ressurgir BioReset Desparasitação — Os 12 Pilares do Terreno Biológico"></option>
-        <option value="Ressurgir Desparasitação Absoluta — Os 12 Pilares do Terreno Biológico"></option>
-        <option value="Ressurgir Desparasitação Absoluta — Método Equilíbrio e Revitalização"></option>
-        <option value="Ressurgir Integrativo Desparasitação Absoluta — Método Renovação e Bem-Estar"></option>
-        <option value="Ressurgir Reequilíbrio — Método de Equilíbrio do Organismo"></option>
+        <option value="Ressurgir: BioReset Desparasitação"></option>
+        <option value="Ressurgir: BioReset Desparasitação — Os 12 Pilares do Terreno Biológico"></option>
+        <option value="Ressurgir: Desparasitação Absoluta — Os 12 Pilares do Terreno Biológico"></option>
+        <option value="Ressurgir: Desparasitação Absoluta — Método Equilíbrio e Revitalização"></option>
+        <option value="Ressurgir Integrativo: Desparasitação Absoluta — Método Renovação e Bem-Estar"></option>
+        <option value="Ressurgir: Reequilíbrio — Método de Equilíbrio do Organismo"></option>
       </datalist>
     </div>
     <span class="hint">Clique no título para escrever o nome ou escolher uma das opções levantadas na reunião.</span>
@@ -345,7 +346,12 @@ titulo.value = estado.titulo;
 function aplicarTitulo() {
   document.title = (estado.titulo ? estado.titulo + " · " : "") + "Painel de Marketing — Ressurgir";
 }
-titulo.addEventListener("input", () => { estado.titulo = titulo.value; aplicarTitulo(); salvar(); });
+titulo.addEventListener("input", () => { estado.titulo = titulo.value; aplicarTitulo(); salvar(); mexeu = true; });
+// O navegador só lista as opções que combinam com o texto atual; ao clicar, esvazia o campo para mostrar todas.
+let mexeu = false;
+titulo.addEventListener("focus", () => { mexeu = false; if (titulo.value) titulo.value = ""; });
+titulo.addEventListener("click", () => { if (!mexeu && titulo.value) titulo.value = ""; titulo.showPicker?.(); });
+titulo.addEventListener("blur", () => { if (!mexeu) titulo.value = estado.titulo; });
 aplicarTitulo();
 
 // Fase

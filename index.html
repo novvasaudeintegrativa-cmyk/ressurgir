@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add("js");</script>
+<title>Ressurgir: Desparasitação Absoluta — Os 12 Pilares do Terreno Biológico</title>
+<meta name="description" content="Conheça os 12 pilares do terreno biológico e a abordagem integrativa do Ressurgir: Desparasitação Absoluta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #ffffff; --soft: #f1f8f7; --cream: #fdeee3; --ink: #00262c; --muted: #4c6b6e; --line: #d6e6e3;
+  --brand: #00dcc0; --brand-strong: #00716f; --brand-ink: #ffffff; --brand-hover: #005f5d; --brand-pressed: #004a49; --brand-dark: #00454d; --accent: #00857f; --accent-soft: #dff6f2;
+  --deep: #00454d; --deep-soft: #e3f1ef; --ruby: #ea2261; --magenta: #f96bee; --lavender: #a8ece0;
+  --shadow-1: rgba(0, 55, 112, .08) 0 1px 3px;
+  --shadow-2: rgba(0, 55, 112, .08) 0 8px 24px, rgba(0, 55, 112, .04) 0 2px 6px;
+  --font: "Outfit", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 18px/1.6 var(--font); -webkit-font-smoothing: antialiased; font-feature-settings: "ss01"; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+section { padding: clamp(56px, 9vw, 112px) 0; }
+h1, h2, h3 { font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(30px, 5.4vw, 64px); letter-spacing: -.025em; color: var(--accent); font-style: italic; }
+.serif { font-family: "Young Serif", Georgia, serif; font-style: normal; font-weight: 400; font-size: .85em; letter-spacing: -.01em; }
+.serif b { font-weight: 400; }
+/* Alterna sans e serif itálico nas palavras de ênfase */
+h2 b, .slogan b, .trust b { font-family: "Young Serif", Georgia, serif; font-style: normal; font-weight: 400; letter-spacing: -.01em; }
+h2 b { font-size: 1.3em; color: var(--accent); }
+.slogan b { font-size: 1.4em; color: var(--accent); }
+h1 b:first-child { font-style: normal; }
+h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.02em; }
+h3 { font-size: 18px; font-weight: 700; letter-spacing: -.005em; line-height: 1.3; }
+.eyebrow { font: 700 12px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.lead { font-weight: 600; color: var(--muted); font-size: clamp(17px, 2vw, 20px); max-width: 60ch; }
+.center { text-align: center; } .center .lead { margin-inline: auto; }
+.head { display: grid; gap: 10px; margin-bottom: 40px; }
+
+.btn-secondary-x {}
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 600 15px/1 var(--font);
+  padding: 12px 22px; border-radius: 9999px; border: 1px solid var(--line); background: #fff; color: var(--ink); text-decoration: none; cursor: pointer; transition: transform .15s, background .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--brand-strong); border-color: var(--brand-strong); color: var(--brand-ink); }
+.btn-primary:hover { background: var(--brand-hover); }
+.btn-primary:active { background: var(--brand-pressed); }
+.btn-lg { padding: 18px 30px; font-size: 17px; }
+
+/* Surgir ao rolar */
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0ms); }
+.js .reveal.in { opacity: 1; transform: none; }
+.js .pillar.reveal.in:hover { transform: translateY(-2px); border-color: var(--accent); }
+.js .zone.profundidade .pillar.reveal.in:hover { border-color: var(--deep); }
+@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* Nav */
+nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, #fff 82%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+.logo { font-weight: 800; letter-spacing: -.01em; text-decoration: none; font-size: 24px; }
+.logo span { color: var(--accent); }
+nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+nav ul a { text-decoration: none; color: var(--muted); } nav ul a:hover { color: var(--ink); }
+@media (max-width: 760px) { nav ul { display: none; } }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; padding-top: clamp(40px, 7vw, 88px); }
+.mesh { position: absolute; inset: -20% -10% auto; height: 80%; z-index: -1; filter: blur(70px); opacity: .6; }
+.mesh i { position: absolute; border-radius: 50%; animation: drift 18s ease-in-out infinite alternate; }
+.mesh i:nth-child(1) { width: 46%; height: 70%; left: 4%; top: 10%; background: #8fdad8; opacity: .55; }
+.mesh i:nth-child(2) { width: 38%; height: 60%; left: 40%; top: 0; background: var(--brand); opacity: .4; animation-duration: 22s; animation-delay: -6s; }
+.mesh i:nth-child(3) { width: 34%; height: 60%; right: 2%; top: 20%; background: var(--ruby); opacity: .2; animation-duration: 26s; animation-delay: -12s; }
+.mesh i:nth-child(4) { width: 26%; height: 40%; left: 28%; top: 40%; background: var(--cream); opacity: .9; animation-duration: 20s; }
+@keyframes drift { to { transform: translate(6%, 10%) scale(1.15); } }
+@media (prefers-reduced-motion: reduce) { .mesh i { animation: none; } html { scroll-behavior: auto; } }
+.hero-text { display: grid; gap: 10px; justify-items: center; text-align: center; margin-bottom: 48px; }
+.hero-text .eyebrow { margin-bottom: 8px; } .hero-text .lead { margin-top: 12px; }
+h1 b, h2 b { font-weight: 800; }
+.hero-text h1 b { color: var(--accent); }
+.hero-text h1 b:last-child { background: linear-gradient(90deg, var(--accent), var(--brand-dark)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.slogan { font-size: clamp(20px, 3vw, 28px); color: var(--ink); font-weight: 800; }
+.slogan b { font-weight: 700; }
+
+.vsl { position: relative; width: min(900px, 100%); margin-inline: auto; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--line); box-shadow: var(--shadow-2); background: linear-gradient(160deg, #ffffff, var(--soft)); }
+.vsl img, .vsl iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.vsl button { position: absolute; inset: 0; width: 100%; border: 0; background: transparent; cursor: pointer; display: grid; place-items: center; }
+.play { width: 84px; height: 84px; border-radius: 50%; background: var(--brand-strong); display: grid; place-items: center; box-shadow: 0 0 0 10px rgba(53, 178, 176, .3); transition: transform .2s; }
+.vsl button:hover .play { transform: scale(1.07); }
+.play svg { margin-left: 5px; }
+.vsl-note { position: absolute; left: 0; right: 0; bottom: 22px; text-align: center; color: var(--muted); font: 500 13px/1 var(--font); }
+.hero-cta { display: grid; gap: 12px; justify-items: center; margin-top: 32px; }
+.fine { font-size: 13px; color: var(--muted); }
+
+/* Pilares */
+/* Roda dos pilares */
+.wheel { width: min(620px, 100%); margin: 0 auto 56px; position: relative; }
+.wheel svg { width: 100%; height: auto; display: block; overflow: visible; }
+.wheel .ring { fill: #fff; stroke: var(--line); stroke-width: 1.5; }
+.wheel .waterline { stroke: var(--brand); stroke-width: 1.5; stroke-dasharray: 3 6; opacity: .7; }
+.wheel .zl { font: 700 9px var(--font); letter-spacing: .1em; fill: var(--muted); }
+.wheel .figura { pointer-events: none; mix-blend-mode: multiply; }
+.wheel .node { cursor: pointer; outline: none; }
+.wheel .node .disc { fill: #fff; stroke: var(--deep); stroke-width: 2; transition: stroke .25s, stroke-width .25s; }
+.wheel .node.sup .disc { stroke: var(--brand); }
+.wheel .node .scale { transition: transform .35s cubic-bezier(.2, .8, .2, 1); transform-box: fill-box; transform-origin: center; }
+.wheel .node.on .scale { transform: scale(1.3); }
+.wheel .node.on .disc { stroke-width: 4; filter: drop-shadow(0 6px 10px rgba(0, 55, 112, .18)); }
+.wheel .node:focus-visible .disc { stroke: var(--ink); stroke-width: 4; }
+.wheel .num { font: 700 11px var(--mono); fill: var(--accent); text-anchor: middle; }
+.wheel-info { display: grid; justify-items: center; gap: 4px; margin-top: 12px; text-align: center; min-height: 118px; }
+.wheel .c-zone { font: 700 12px var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.wheel .c-zone.pro { color: var(--deep); }
+.wheel .c-num { font: 400 48px/1.1 "Young Serif", Georgia, serif; color: var(--ink); letter-spacing: -.02em; }
+.wheel .c-name { font: 700 20px/1.3 var(--font); color: var(--ink); max-width: 30ch; text-wrap: balance; }
+@media (prefers-reduced-motion: reduce) { .wheel .node .scale { transition: none; } }
+.zones { display: grid; gap: 20px; }
+.zone { border-radius: 16px; padding: clamp(18px, 3vw, 28px); display: grid; gap: 18px; border: 1px solid var(--line); }
+.zone.superficie { background: #fff; }
+.zone.profundidade { background: var(--soft); }
+.zone { border-radius: 12px; }
+.zone > header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.zone > header h3 { font-size: 22px; font-weight: 800; }
+.zone > header span { font-size: 14px; color: var(--muted); }
+.zone .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.pillar { border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-1); padding: 20px; display: grid; gap: 10px; align-content: start; background: #fff; transition: border-color .2s, transform .2s; }
+.pillar .img { align-self: start; width: 100%; aspect-ratio: 1; flex: none; border-radius: 8px; overflow: hidden; background: #fff; margin-bottom: 4px; }
+.pillar .img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.35); }
+.pillar:hover { border-color: var(--accent); transform: translateY(-2px); }
+.pillar h3 { font-size: 16px; overflow-wrap: anywhere; hyphens: auto; }
+.pillar .n { font: 700 13px/1 var(--mono); color: var(--accent); }
+.zone.profundidade .pillar { border-color: #bfe0de; }
+.zone.profundidade .pillar .n, .zone.profundidade > header h3 { color: var(--deep); }
+.zone.profundidade { background: var(--deep-soft); border-color: #cfe7e5; }
+.iceberg { margin-top: 40px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+
+/* Faixa de confiança */
+.trust { padding: 36px 0; border-block: 1px solid var(--line); background: var(--soft); }
+.trust ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; text-align: center; }
+.trust b { display: block; font: 800 40px/1.1 var(--font); color: var(--accent); }
+.trust span { font-size: 14px; color: var(--muted); }
+
+/* Oferta */
+.offer { background: var(--soft); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; }
+th, td { text-align: left; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+th { font: 700 12px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td.v { font-weight: 700; font-family: var(--mono); color: var(--accent); }
+.pend { color: var(--muted); font-style: italic; }
+
+/* Depoimentos */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.card { border: 1px dashed var(--line); border-radius: 12px; padding: 32px; color: var(--muted); display: grid; gap: 8px; }
+
+/* Prévia */
+.steps { display: grid; gap: 28px; position: relative; padding-left: 8px; }
+.steps::before { content: ""; position: absolute; left: 27px; top: 14px; bottom: 14px; width: 2px; background: linear-gradient(var(--brand), var(--accent)); }
+.step { display: grid; grid-template-columns: 40px 1fr; gap: 20px; position: relative; }
+.step .n { width: 40px; height: 40px; border-radius: 50%; background: var(--cream); border: 2px solid var(--brand); color: var(--accent); font: 600 13px/36px var(--mono); text-align: center; position: relative; z-index: 1; }
+.step p { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+
+/* CTA */
+.cta { position: relative; color: #fff; text-align: center; overflow: hidden; background: var(--brand-dark); }
+.cta .wrap { position: relative; z-index: 1; display: grid; gap: 22px; justify-items: center; }
+.cta .lead { color: var(--lavender); }
+
+
+footer { padding: 40px 0; font-size: 13px; color: var(--muted); }
+footer .wrap { display: grid; gap: 14px; }
+footer p { margin: 0; max-width: 90ch; }
+
+/* ===== v3: referência GroundZero (teal profundo, menta, creme, Outfit leve + negrito) ===== */
+body { font-weight: 400; }
+h1, h2, h3 { font-weight: 300; font-style: normal; }
+h1 b, h2 b, .slogan b { font-family: var(--font); font-style: normal; font-weight: 700; font-size: 1em; }
+.serif { font-family: var(--font); font-style: normal; font-weight: 300; font-size: 1em; letter-spacing: -.02em; }
+.serif b { font-weight: 700; }
+h1 { color: #fff; }
+h3 { font-weight: 600; }
+.lead { font-weight: 300; }
+h2 b { color: var(--accent); }
+.eyebrow { color: var(--accent); }
+.logo span { color: var(--brand); }
+nav { background: rgba(0, 38, 44, .92); border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.logo { color: #fff; } nav ul a { color: #cfe9e5; } nav ul a:hover { color: #fff; }
+.hero { background: linear-gradient(165deg, #00454d 0%, #00595d 55%, #007a78 100%); color: #fff; }
+.mesh { opacity: .55; }
+.mesh i:nth-child(1) { background: #00dcc0; opacity: .25; }
+.mesh i:nth-child(2) { background: #00a99d; opacity: .35; }
+.mesh i:nth-child(3) { background: #00dcc0; opacity: .15; }
+.mesh i:nth-child(4) { background: #fdeee3; opacity: .08; }
+.hero .eyebrow { color: var(--brand); }
+.hero h1 b, .hero-text h1 b { color: var(--brand); font-weight: 700; }
+.hero-text h1 b:last-child { background: none; -webkit-background-clip: initial; background-clip: initial; color: var(--brand); }
+.slogan { color: #fff; font-weight: 300; }
+.slogan b { color: var(--brand); font-size: 1em; }
+.hero .lead { color: rgba(255, 255, 255, .8); }
+.hero .fine { color: rgba(255, 255, 255, .65); }
+nav .btn-primary, .hero .btn-primary, .cta .btn-primary { background: linear-gradient(90deg, #00dcc0, #7af0dc); border-color: transparent; color: #00262c; font-weight: 600; }
+nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { background: #7af0dc; }
+.vsl { border-color: rgba(255, 255, 255, .15); }
+#pilares { background: var(--cream); }
+.zone.profundidade { background: var(--brand-dark); border-color: var(--brand-dark); }
+.zone.profundidade > header h3 { color: #fff; font-weight: 600; }
+.zone.profundidade > header span { color: var(--lavender); }
+.zone.profundidade .pillar { border-color: transparent; }
+.zone.profundidade .pillar .n { color: var(--accent); }
+.zone.superficie { border-color: #f0dccb; }
+.zone > header h3 { font-weight: 600; }
+.wheel .c-num { font: 600 48px/1.1 var(--font); }
+.wheel .c-zone.pro { color: var(--accent); }
+.trust { background: var(--brand-dark); border: 0; }
+.trust b { color: var(--brand); font: 600 44px/1.1 var(--font); }
+.trust span { color: #cfe9e5; }
+.offer { background: var(--soft); }
+.cta { background: linear-gradient(165deg, #00454d 0%, #007a78 100%); }
+.cta .eyebrow { color: var(--brand); }
+.cta h2 b { color: var(--brand); }
+.cta .lead { color: rgba(255, 255, 255, .8); }
+</style>
+</head>
+<body>
+
+<nav aria-label="Principal">
+  <div class="wrap">
+    <a class="logo" href="#topo">Ressurgir<span>:</span></a>
+    <ul>
+      <li><a href="#pilares">Os 12 pilares</a></li>
+      <li><a href="#oferta">Oferta</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#metodo">Método</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#" data-cta>Quero saber mais</a>
+  </div>
+</nav>
+
+<header class="hero" id="topo">
+  <div class="mesh" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="eyebrow">Abordagem integrativa</span>
+      <h1><b>Ressurgir:</b> <span class="serif">Desparasitação <b>Absoluta</b></span></h1>
+      <p class="slogan">Os <b>12 Pilares</b> do Terreno Biológico</p>
+      <p class="lead">Além do que se vê, o que realmente importa. Assista ao vídeo e entenda por que olhar só para a superfície não basta.</p>
+    </div>
+
+    <div class="vsl" id="vsl">
+      <button type="button" id="vsl-play" aria-label="Assistir ao vídeo">
+        <span class="play"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+      </button>
+      <span class="vsl-note">Assista ao vídeo</span>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary btn-lg" href="#" data-cta>Quero conhecer o método</a>
+      <span class="fine">Você será direcionado ao WhatsApp.</span>
+    </div>
+  </div>
+</header>
+
+<section id="pilares">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">O terreno biológico</span>
+      <h2>Os <b>12 pilares</b>, da superfície à profundidade</h2>
+      <p class="lead">Apenas parte do quadro aparece. Muitas causas ficam ocultas e não são investigadas. Explore cada pilar.</p>
+    </div>
+    <div class="wheel" id="wheel" aria-label="Os 12 pilares do terreno biológico em círculo"></div>
+    <div class="zones" id="zones"></div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <ul>
+      <li><b>12</b><span>pilares avaliados</span></li>
+      <li><b>2</b><span>níveis: superfície e profundidade</span></li>
+      <li><b>1</b><span>visão integrativa do organismo</span></li>
+    </ul>
+  </div>
+</div>
+
+<section class="offer" id="oferta">
+  <div class="wrap">
+    <div class="head center">
+      <span class="eyebrow">A oferta</span>
+      <h2>O que <b>você recebe</b></h2>
+      <p class="lead">Os detalhes comerciais serão confirmados antes da publicação.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th>Descrição</th><th>Valor</th></tr></thead>
+        <tbody>
+          <tr><td>Ressurgir: Desparasitação Absoluta</td><td>Os 12 Pilares do Terreno Biológico</td><td class="v">R$ —</td></tr>
+          <tr><td>Bônus</td><td class="pend">A definir</td><td class="v">—</td></tr>
+          <tr><td>Garantia</td><td class="pend">A definir</td><td class="v">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="center" style="margin-top:32px"><a class="btn btn-primary btn-lg" href="#" data-cta>Quero saber mais</a></div>
+  </div>
+</section>
+
+<section id="depoimentos">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Depoimentos</span>
+      <h2>Quem já <b>conheceu o método</b></h2>
+      <p class="lead">Aqui entram apenas relatos com autorização por escrito de quem os enviou.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Depoimento 1</h3><span>Aguardando autorização.</span></div>
+      <div class="card"><h3>Depoimento 2</h3><span>Aguardando autorização.</span></div>
+      <div class="card"><h3>Depoimento 3</h3><span>Aguardando autorização.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="metodo" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Prévia do método</span>
+      <h2>Como o conteúdo está <b>organizado</b></h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">01</span><div><h3>O que fica na superfície</h3><p>Genética, emoções, ambiente e água: os pilares mais visíveis.</p></div></div>
+      <div class="step"><span class="n">02</span><div><h3>O que fica na profundidade</h3><p>Metais, intestino, microrganismos, nutrição, imunidade, mitocôndrias e hormônios.</p></div></div>
+      <div class="step"><span class="n">03</span><div><h3>A história de cada pessoa</h3><p>Conflitos sistêmicos, história familiar e espiritualidade.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="eyebrow">Ressurgir</span>
+    <h2>Olhe além da <b>superfície</b></h2>
+    <p class="lead">Fale com a nossa equipe e conheça os 12 pilares do terreno biológico.</p>
+    <a class="btn btn-primary btn-lg" href="#" data-cta>Falar no WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#topo">Ressurgir<span>:</span> Desparasitação Absoluta</a>
+    <p>Este conteúdo é informativo e educacional. Não substitui consulta, diagnóstico ou tratamento feito por profissional de saúde habilitado. Resultados variam de pessoa para pessoa e não são garantidos.</p>
+    <p>© <span id="ano"></span> Ressurgir. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+// ===== Configuração: troque aqui =====
+const WHATSAPP = "";            // só números com DDI, ex.: "5511999999999"
+const WHATSAPP_MSG = "Olá! Quero saber mais sobre o Ressurgir: Desparasitação Absoluta.";
+const VSL_URL = "";             // link de incorporação (embed) do vídeo: YouTube, Vimeo, Vturb etc.
+// =====================================
+
+const PILARES = [
+  ["Genética e epigenética", "superficie"], ["Conflitos emocionais e neurotransmissores", "superficie"],
+  ["Geopatologias e toxinas ambientais", "superficie"], ["Hidratação e qualidade da água", "superficie"],
+  ["Metais tóxicos", "profundidade"], ["Saúde gastrointestinal", "profundidade"],
+  ["Fungos, parasitas, vírus, bactérias e vermes", "profundidade"], ["Carências nutricionais e gasto energético", "profundidade"],
+  ["Sistema circulatório e imunológico", "profundidade"], ["Saúde mitocondrial", "profundidade"],
+  ["Tríade metabólica e hormonal", "profundidade"], ["Conflitos sistêmicos, história familiar e espiritualidade", "profundidade"]
+];
+const ZONAS = {
+  superficie: ["Na superfície", "Apenas parte do quadro aparece."],
+  profundidade: ["Na profundidade", "Muitas causas ficam ocultas e não são investigadas."]
+};
+const raiz = document.getElementById("zones");
+Object.entries(ZONAS).forEach(([z, [titulo, sub]]) => {
+  const sec = document.createElement("div");
+  sec.className = "zone " + z;
+  sec.innerHTML = '<header><h3></h3><span></span></header><div class="grid"></div>';
+  sec.querySelector("h3").textContent = titulo;
+  sec.querySelector("span").textContent = sub;
+  PILARES.forEach(([nome, pz], i) => {
+    if (pz !== z) return;
+    const d = document.createElement("div");
+    d.className = "pillar";
+    d.innerHTML = '<div class="img"><img alt="" loading="lazy"></div><span class="n">' + String(i + 1).padStart(2, "0") + '</span><h3></h3>';
+    d.querySelector("img").src = "assets/p" + String(i + 1).padStart(2, "0") + ".jpg";
+    d.querySelector("h3").textContent = nome;
+    sec.querySelector(".grid").append(d);
+  });
+  raiz.append(sec);
+});
+
+const link = WHATSAPP ? "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(WHATSAPP_MSG) : "#oferta";
+document.querySelectorAll("[data-cta]").forEach(a => { a.href = link; if (WHATSAPP) { a.target = "_blank"; a.rel = "noopener"; } });
+
+document.getElementById("vsl-play").addEventListener("click", () => {
+  if (!VSL_URL) { document.querySelector(".vsl-note").textContent = "Vídeo em breve."; return; }
+  const f = document.createElement("iframe");
+  f.src = VSL_URL + (VSL_URL.includes("?") ? "&" : "?") + "autoplay=1";
+  f.allow = "autoplay; fullscreen; picture-in-picture"; f.allowFullscreen = true; f.title = "Vídeo de apresentação";
+  document.getElementById("vsl").replaceChildren(f);
+});
+// Roda dos 12 pilares (SVG gerado por JS)
+(function () {
+  const NS = "http://www.w3.org/2000/svg", C = 350, R = 265, RN = 36;
+  const el = (n, a = {}, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (p) p.append(e); return e; };
+  const wheel = document.getElementById("wheel");
+  const svg = el("svg", { viewBox: "0 0 700 700", role: "group" }, wheel);
+  const defs = el("defs", {}, svg);
+  el("circle", { class: "ring", cx: C, cy: C, r: R }, svg);
+  el("line", { class: "waterline", x1: C - R, y1: C, x2: C + R, y2: C }, svg);
+  el("text", { class: "zl", x: C - R + 16, y: C - 9 }, svg).textContent = "SUPERFÍCIE";
+  el("text", { class: "zl", x: C - R + 16, y: C + 18 }, svg).textContent = "PROFUNDIDADE";
+  const IM = 370;
+  el("image", { href: "assets/iceberg-mulher.jpg", x: C - IM / 2, y: C - IM * 0.395, width: IM, height: IM, class: "figura", "aria-hidden": "true" }, svg);
+  const ANG = [-150, -110, -70, -30, 20, 40, 60, 80, 100, 120, 140, 160];
+  const nodes = [];
+  PILARES.forEach(([nome, z], i) => {
+    const a = ANG[i] * Math.PI / 180, x = C + R * Math.cos(a), y = C + R * Math.sin(a);
+    const g = el("g", { class: "node " + (z === "superficie" ? "sup" : "pro"), tabindex: 0, role: "button", "aria-label": (i + 1) + ". " + nome }, svg);
+    const sc = el("g", { class: "scale" }, g);
+    const id = "clip" + i;
+    el("circle", { cx: x, cy: y, r: RN - 3 }, el("clipPath", { id }, defs));
+    el("circle", { class: "disc", cx: x, cy: y, r: RN }, sc);
+    const im = el("image", { href: "assets/p" + String(i + 1).padStart(2, "0") + ".jpg", x: x - RN * 1.2, y: y - RN * 1.2, width: RN * 2.4, height: RN * 2.4, "clip-path": "url(#" + id + ")" }, sc);
+    const ox = x + (x - C) / R * (RN + 24), oy = y + (y - C) / R * (RN + 24) + 4;
+    el("text", { class: "num", x: ox, y: oy }, svg).textContent = String(i + 1).padStart(2, "0");
+    g.addEventListener("mouseenter", () => ativar(i, true));
+    g.addEventListener("focus", () => ativar(i, true));
+    g.addEventListener("click", () => ativar(i, true));
+    nodes.push(g);
+  });
+  const info = document.createElement("div");
+  info.className = "wheel-info"; info.setAttribute("aria-live", "polite");
+  info.innerHTML = '<span class="c-zone"></span><strong class="c-num"></strong><span class="c-name"></span>';
+  wheel.append(info);
+  const cz = info.querySelector(".c-zone"), cn = info.querySelector(".c-num"), nome = info.querySelector(".c-name");
+
+  let atual = 0, timer = null, pausado = false;
+  function ativar(i, manual) {
+    atual = i;
+    nodes.forEach((n, k) => n.classList.toggle("on", k === i));
+    const [t, z] = PILARES[i];
+    cz.textContent = z === "superficie" ? "Na superfície" : "Na profundidade";
+    cz.className = "c-zone" + (z === "superficie" ? "" : " pro");
+    cn.textContent = String(i + 1).padStart(2, "0");
+    nome.textContent = t;
+    if (manual) { clearInterval(timer); timer = null; }
+  }
+  function iniciar() {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    timer = setInterval(() => { if (!pausado) ativar((atual + 1) % PILARES.length); }, 2800);
+  }
+  wheel.addEventListener("mouseenter", () => pausado = true);
+  wheel.addEventListener("mouseleave", () => { pausado = false; if (!timer) iniciar(); });
+  ativar(0); iniciar();
+})();
+// Elementos surgem ao rolar a página
+(function () {
+  const alvos = [".hero-text > *", ".vsl", ".hero-cta", ".head > *", ".wheel", ".zone > header", ".pillar", ".trust li",
+    ".table-wrap", ".offer .center", ".card", ".step", ".cta .wrap > *", "footer .wrap > *"];
+  const els = [];
+  alvos.forEach(sel => document.querySelectorAll(sel).forEach(e => {
+    if (e.classList.contains("reveal")) return;
+    const irmaos = [...e.parentElement.children].filter(c => c.matches(sel));
+    e.style.setProperty("--d", Math.min(irmaos.indexOf(e), 6) * 80 + "ms");
+    e.classList.add("reveal"); els.push(e);
+  }));
+  if (!("IntersectionObserver" in window)) { els.forEach(e => e.classList.add("in")); return; }
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+  }), { threshold: .12, rootMargin: "0px 0px -40px 0px" });
+  els.forEach(e => io.observe(e));
+})();
+document.getElementById("ano").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

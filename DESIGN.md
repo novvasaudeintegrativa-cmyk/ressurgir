@@ -1,16 +1,52 @@
 # Design — Ressurgir
 
-Sistema visual das páginas e painéis do lançamento Ressurgir. A cor principal é um verde vivo inspirado no verde da Kiwify, sobre neutros levemente esverdeados. A referência viva é o [painel-marketing.html](painel-marketing.html). Cores, tipografia, cards, barras, pills e tabela já estão implementados lá; os botões principal e fantasma estão definidos aqui para as próximas telas.
+Sistema visual das páginas, painéis e posts de Instagram do lançamento Ressurgir. A linguagem vem da referência [GroundZero no Behance](https://www.behance.net/gallery/243007699/Social-Media-Consultoria-Empresarial): teal profundo em degradê, verde-água (menta) como destaque, creme alternando com o teal, tipografia geométrica leve com palavras-chave em negrito, botões em pílula e muito espaço vazio. Referências vivas: [index.html](index.html) e [painel-marketing.html](painel-marketing.html).
 
-> O verde `#00C46E` é uma aproximação. Quando tivermos o código oficial da marca, troque só o token `--brand`.
+> As cores foram lidas à vista a partir das imagens da referência (não há código oficial). Para ajustar, altere só os tokens `--brand`, `--brand-strong`, `--brand-dark` e `--accent`.
 
 ## Princípios
 
-1. **Verde é ação e progresso.** Use `--brand` para o que avança: botão principal, barra de progresso, item marcado, filtro ativo. Não use verde como decoração.
-2. **Neutros com tom verde.** Fundo, bordas e trilhos puxam levemente para o verde. Nunca cinza puro.
+1. **Menta é destaque e progresso.** Use `--brand` para o que avança ou precisa ser lido primeiro: palavra-chave, barra de progresso, botão sobre fundo escuro. Não use como decoração.
+2. **Neutros esverdeados.** Fundo, bordas e trilhos puxam levemente para o teal, e o creme `--cream` quebra o ritmo. Nunca cinza puro.
+6. **Leve contra negrito.** Texto em peso 300 e só a palavra que importa em 700 (e em menta ou teal), como nos posts da referência.
 3. **Estado tem forma.** Situação aparece como pill (cor + texto), nunca só como cor.
 4. **Números alinhados.** Todo número em coluna usa a fonte mono com `tabular-nums`.
 5. **Claro e escuro.** Toda cor vem de um token; o tema escuro só redefine os tokens.
+
+---
+
+## Linguagem visual (referência GroundZero)
+
+| Item | Valor |
+| --- | --- |
+| Fonte | Outfit para tudo (300 em títulos e textos de apoio, 700 nas palavras-chave, 600 em botões e títulos de card); JetBrains Mono só para números de tabela |
+| Fundos | teal profundo em degradê (`#00454D` → `#007A78`) nas faixas de abertura e fechamento; creme `#FDEEE3` e branco nas faixas de conteúdo |
+| Destaque | menta `#00DCC0` sobre teal profundo; `#00857F` sobre fundo claro |
+| Botão sobre fundo escuro | pílula em degradê menta (`#00DCC0` → `#7AF0DC`) com texto `#00262C` |
+| Botão sobre fundo claro | pílula `#00716F`, texto branco, hover `#005F5D`, pressionado `#004A49` |
+| Cards | raio 12px, borda 1px `--line`, sombra suave só em vídeo e mockups |
+| Gradiente mesh | menta e teal borrados sobre o teal profundo, com um toque de creme |
+| Profundidade (pilares 5 a 12) | cartão em teal profundo `#00454D`, texto branco; superfície (1 a 4) em cartão branco sobre creme |
+| Fotos | tratadas em duotone teal, nunca coloridas cruas |
+| Moldura fina | contorno de 1px em menta em torno de mockups e fotos, e chips (pílulas de contorno) para rótulos como "Avaliação da Gestão" |
+
+> Nesta linguagem a sombra é permitida só em vídeo e mockups. Nos painéis internos continua valendo "sem sombras".
+
+---
+
+## Gestalt
+
+Princípios de percepção que organizam as telas. Em dúvida, aplique estes antes de adicionar borda, cor ou ícone.
+
+| Princípio | Regra no projeto | Onde aparece |
+| --- | --- | --- |
+| Proximidade | Itens relacionados ficam a 8–12px; grupos distintos, a 28px ou mais | Título, slogan e texto da hero juntos, com mais espaço até o vídeo |
+| Região comum | Quem pertence ao mesmo grupo divide o mesmo fundo e a mesma borda | Os pilares "Na superfície" e "Na profundidade" |
+| Semelhança | Elementos de mesma função têm a mesma forma, tamanho e cor | Os 12 cards de pilar são idênticos; só o grupo muda o tom do fundo |
+| Continuidade | Uma linha guia o olhar de um item ao próximo | Linha vertical ligando as etapas do método |
+| Figura e fundo | Um único elemento em destaque por tela, sobre fundo calmo | Vídeo elevado na hero; botão principal em teal cheio |
+| Simetria e alinhamento | Eixo central nas seções de abertura e de chamada; grades alinhadas à esquerda no resto | Hero, oferta e CTA centralizados; pilares em grade |
+| Fechamento | Contêineres com borda sugerem unidade sem precisar de caixa pesada | Cards e tabela com 1px de borda e cantos arredondados |
 
 ---
 
@@ -20,16 +56,19 @@ Sistema visual das páginas e painéis do lançamento Ressurgir. A cor principal
 
 | Token | Claro | Escuro | Uso |
 | --- | --- | --- | --- |
-| `--brand` | `#00C46E` | `#00C46E` | Fundos de destaque: cabeçalho, botão principal, barras, checkbox |
-| `--brand-ink` | `#04281A` | `#04281A` | Texto **sobre** `--brand` |
-| `--accent` | `#00874B` | `#2FD98A` | Texto e ícones verdes sobre o fundo (links, número de destaque) |
-| `--accent-soft` | `#DCF5E8` | `#123526` | Hover de itens, fundos suaves |
-| `--bg` | `#F1F6F3` | `#0F1713` | Fundo da página |
-| `--panel` | `#FFFFFF` | `#16211B` | Cards, tabelas, campos |
-| `--ink` | `#14231B` | `#E5ECE7` | Texto principal |
-| `--muted` | `#56695D` | `#9AABA0` | Texto secundário, rótulos |
-| `--line` | `#D3E2D8` | `#283A30` | Bordas e divisórias |
-| `--track` | `#E1ECE5` | `#233229` | Trilho de barras, pill neutra |
+| `--brand` | `#00DCC0` | `#00DCC0` | Menta: destaques sem texto, palavras-chave sobre teal escuro, barras de progresso |
+| `--brand-strong` | `#00716F` | `#00716F` | Fundo de botões e filtro ativo sobre fundo claro, sempre com texto branco |
+| `--brand-dark` | `#00454D` | `#00454D` | Teal profundo: faixas de abertura e fechamento, cartões de destaque |
+| `--brand-ink` | `#FFFFFF` | `#FFFFFF` | Texto sobre `--brand-strong` e `--brand-dark` |
+| `--accent` | `#00857F` | `#5FE6D2` | Texto e ícones teal sobre o fundo claro (links, número de destaque) |
+| `--accent-soft` | `#DFF6F2` | `#0F3A3A` | Hover de itens, fundos suaves |
+| `--cream` | `#FDEEE3` | `#1A2A2B` | Faixa creme que quebra o ritmo teal e branco |
+| `--bg` | `#FFFFFF` | `#071A1D` | Fundo da página |
+| `--panel` | `#F1F8F7` | `#0E2528` | Cards, tabelas, campos |
+| `--ink` | `#00262C` | `#E3F2F0` | Texto principal |
+| `--muted` | `#4C6B6E` | `#9DB8B6` | Texto secundário, rótulos |
+| `--line` | `#D6E6E3` | `#1F3B3E` | Bordas e divisórias |
+| `--track` | `#DCEBE8` | `#173034` | Trilho de barras, pill neutra |
 
 ### Cores de estado
 
@@ -43,8 +82,9 @@ Separadas da cor da marca. Só para situação (meta, prazo, erro).
 
 ### Regras de contraste
 
-- Texto sobre `--brand` é sempre `--brand-ink`. **Nunca branco**: branco sobre `#00C46E` não passa no contraste mínimo.
-- Texto verde sobre fundo claro usa `--accent` (`#00874B`), não `--brand`.
+- Texto branco só sobre `--brand-strong` (`#00716F`) ou `--brand-dark`. Branco sobre a menta `#00DCC0` não passa.
+- Texto sobre a menta é sempre escuro (`#00262C`).
+- Texto teal sobre fundo claro usa `--accent` (`#00857F`), não `--brand`. No tema escuro, `--accent` é `#5FE6D2`.
 - Pills de estado: fundo com 16–18% da cor e texto na cor cheia.
 
 ### Implementação
@@ -52,16 +92,16 @@ Separadas da cor da marca. Só para situação (meta, prazo, erro).
 ```css
 :root {
   color-scheme: light;
-  --bg: #f1f6f3; --panel: #ffffff; --ink: #14231b; --muted: #56695d; --line: #d3e2d8;
-  --brand: #00c46e; --brand-ink: #04281a;
-  --accent: #00874b; --accent-soft: #dcf5e8; --track: #e1ece5;
+  --bg: #ffffff; --panel: #f1f8f7; --ink: #00262c; --muted: #4c6b6e; --line: #d6e6e3;
+  --brand: #00dcc0; --brand-strong: #00716f; --brand-dark: #00454d; --brand-ink: #ffffff;
+  --accent: #00857f; --accent-soft: #dff6f2; --cream: #fdeee3; --track: #dcebe8;
   --good: #2e7d4f; --warn: #b7791f; --bad: #b84a3a;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #0f1713; --panel: #16211b; --ink: #e5ece7; --muted: #9aaba0; --line: #283a30;
-    --accent: #2fd98a; --accent-soft: #123526; --track: #233229;
+    --bg: #071a1d; --panel: #0e2528; --ink: #e3f2f0; --muted: #9db8b6; --line: #1f3b3e;
+    --accent: #5fe6d2; --accent-soft: #0f3a3a; --cream: #1a2a2b; --track: #173034;
     --good: #6cc592; --warn: #e0a84a; --bad: #e57c6b;
   }
 }
@@ -74,12 +114,11 @@ Separadas da cor da marca. Só para situação (meta, prazo, erro).
 
 | Papel | Fonte | Token | Uso |
 | --- | --- | --- | --- |
-| Display | Bricolage Grotesque 500/700 | `--font-display` | Títulos, nomes de área |
-| Texto | Figtree 400/500/600 | `--font-body` | Corpo, rótulos, botões |
+| Display e texto | Outfit 300/400/600/700 | `--font-display`, `--font-body` | Títulos (300 com palavras-chave em 700), corpo, rótulos, botões (600) |
 | Dados | JetBrains Mono 400/600 | `--font-mono` | Números, valores, campos numéricos |
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
 ```
 
 ### Escala
@@ -220,7 +259,7 @@ Campo de texto com cara de título, usado onde o nome ainda pode mudar.
 
 Use com `<datalist>` quando houver opções sugeridas.
 
-### Cabeçalho (faixa verde)
+### Cabeçalho (faixa teal)
 
 ```css
 .page-header {
@@ -310,6 +349,41 @@ tr:last-child td { border-bottom: 0; }
 ```css
 .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 12px; }
 ```
+
+---
+
+## Posts de Instagram
+
+Mesma linguagem do site, aplicada em peças 1080 × 1350 px (feed 4:5) e 1080 × 1080 px. A referência é a série de consultoria empresarial do GroundZero.
+
+### Anatomia
+
+| Elemento | Regra |
+| --- | --- |
+| Fundo | Degradê teal profundo (`#00454D` → `#007A78`) com um brilho menta suave no canto; um post a cada três ou quatro usa fundo creme `#FDEEE3` com texto teal escuro |
+| Logo | "Ressurgir:" centralizada no topo (ou no rodapé do texto), pequena, em branco com os dois pontos em menta |
+| Título | Outfit 300 em branco, 56–72 px, até 3 linhas, centralizado; **a palavra-chave em 700 e menta** (ex.: "Os **12 pilares**") |
+| Apoio | Outfit 300, 28–32 px, branco a 80%, no máximo 2 linhas |
+| Rótulo | Chip de contorno de 1px em menta (pílula) acima do título, para o tema do post, ex.: "Terreno biológico" |
+| Número-marca | Numeral gigante (ex.: "12") em teal 15% mais claro que o fundo, atrás do assunto, cortado pela borda |
+| Imagem | Ilustração do projeto (Iceberg ou ícones dos pilares) ou foto em duotone teal, dentro de moldura fina de 1px em menta com cantos de 24 px |
+| Chamada | Pílula em degradê menta (`#00DCC0` → `#7AF0DC`) com texto `#00262C`, ícone de link à esquerda e cursor desenhado na ponta: "Acesse o link da bio" |
+| Margens | 96 px nas laterais e 120 px em cima e embaixo; nada fora dessa área |
+
+### Variações
+
+1. **Capa de carrossel:** título grande, chip, sem chamada; seta discreta "deslize" no canto inferior.
+2. **Pilar:** ilustração do pilar centralizada, número do pilar em menta, nome do pilar em 700.
+3. **Superfície x profundidade:** metade superior creme, metade inferior teal profundo, separadas por uma linha d'água pontilhada em menta.
+4. **Chamada final:** fundo teal profundo, título curto e o botão em destaque. Uma única pílula preenchida por peça.
+
+### Regras
+
+- Um único destaque por peça: a palavra-chave em menta, **ou** a pílula, nunca vários concorrendo.
+- Contraste: texto branco só sobre teal profundo; sobre menta, texto escuro.
+- Sem rostos nem imagens esotéricas. A mulher do iceberg é a ilustração estilizada sem rosto.
+- Texto em português, sem promessa de cura ou de resultado garantido. Incluir o aviso legal nas legendas, não na arte.
+- Sempre a mesma ordem de leitura: chip, título, apoio, imagem, chamada (Gestalt de continuidade, de cima para baixo).
 
 ---
 
