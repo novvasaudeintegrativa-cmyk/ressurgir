@@ -216,8 +216,8 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 @media (prefers-reduced-motion: reduce) { .node .dot, .node .pop { transition: none; } }
 
 /* Carrossel horizontal: rolar a página move os cards para a direita */
-.hscroll { position: relative; padding: 0; background: var(--soft); }
-.hs-sticky { display: grid; gap: 24px; padding: 72px 0 40px; }
+.hscroll { position: relative; padding: 0 !important; background: var(--soft); }
+.hs-sticky { display: grid; gap: 18px; padding: 56px 0 32px; }
 .hs-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; }
 .hs-head .head { margin: 0; }
 .hs-ctrl { display: flex; align-items: center; gap: 10px; }
@@ -225,10 +225,10 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .hs-ctrl button:hover { background: var(--accent-soft); }
 .hs-bar { height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
 .hs-bar span { display: block; height: 100%; width: 8%; background: var(--brand-strong); border-radius: 4px; }
-.hs-viewport { overflow-x: auto; scroll-snap-type: x proximity; padding: 8px 0 16px; scrollbar-width: none; }
+.hs-viewport { overflow-x: auto; scroll-snap-type: x proximity; padding: 0 0 8px; scrollbar-width: none; }
 .hs-viewport::-webkit-scrollbar { display: none; }
 .hs-track { display: flex; gap: 20px; padding: 0 max(16px, calc((100vw - 1120px) / 2)); width: max-content; }
-.hs-card { position: relative; overflow: hidden; flex: none; width: min(340px, 80vw); height: 400px; padding: 28px; border-radius: 16px; display: grid; align-content: start; gap: 12px; scroll-snap-align: center; border: 1px solid var(--line); background: #fff; color: var(--ink); }
+.hs-card { position: relative; overflow: hidden; flex: none; width: min(340px, 80vw); height: 360px; padding: 28px; border-radius: 16px; display: grid; align-content: start; gap: 12px; scroll-snap-align: center; border: 1px solid var(--line); background: #fff; color: var(--ink); }
 .hs-card.dark { background: var(--brand-dark); border-color: var(--brand-dark); color: #fff; }
 .hs-card .tag { justify-self: start; font: 700 11px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; padding: 6px 10px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
 .hs-card.dark .tag { background: rgba(0, 220, 192, .14); color: var(--brand); }
@@ -240,7 +240,7 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .hs-card.dark p { color: rgba(255, 255, 255, .8); }
 .hs-card .big { position: absolute; right: 18px; bottom: -14px; font: 700 130px/1 var(--font); letter-spacing: -.04em; color: currentColor; opacity: .07; pointer-events: none; }
 /* modo preso: a rolagem vertical empurra a trilha para a direita */
-.js .hscroll.pinned .hs-sticky { position: sticky; top: 0; height: 100vh; align-content: center; padding-top: 80px; overflow: hidden; }
+.js .hscroll.pinned .hs-sticky { position: sticky; top: 0; height: 100vh; align-content: center; gap: 18px; padding: 72px 0 24px; overflow: hidden; }
 .js .hscroll.pinned .hs-viewport { overflow: visible; }
 .js .hscroll.pinned .hs-track { will-change: transform; }
 .trust { background: var(--brand-dark); border: 0; }
@@ -259,17 +259,10 @@ footer .logo { color: var(--ink); }
 footer .logo .lw > span { color: var(--accent); }
 @media (max-width: 760px) { nav .logo .lw small { display: none; } }
 
-/* Título dos pilares (abaixo dos cards) em verde */
-.titulo-pilares { background: var(--soft); text-align: center; padding: clamp(56px, 8vw, 96px) 0 clamp(8px, 2vw, 24px); }
-.titulo-pilares h2 { font-weight: 700; text-transform: uppercase; letter-spacing: -.02em; line-height: .95; font-size: clamp(40px, 7vw, 88px); color: var(--brand-strong); }
-.titulo-pilares h2 span { display: block; }
-.titulo-pilares h2 em { display: block; font-style: normal; font-weight: 300; font-size: .52em; letter-spacing: .08em; margin-top: .25em; color: var(--accent); }
-.titulo-pilares i { display: block; width: 120px; height: 3px; margin: 28px auto 20px; background: var(--brand); border-radius: 3px; }
-.titulo-pilares p { margin: 0; color: var(--muted); font-size: clamp(17px, 2vw, 22px); font-weight: 300; }
 
 /* Hero mais clara */
-.hero { background: linear-gradient(165deg, #eafaf7 0%, #c4f0e8 55%, #9fe3d8 100%); color: var(--ink); }
-.hero .mesh { opacity: .5; }
+.hero { background: #fff; color: var(--ink); }
+.hero .mesh { display: none; }
 .hero .mesh i:nth-child(1) { background: #00dcc0; opacity: .3; }
 .hero .mesh i:nth-child(2) { background: #7af0dc; opacity: .5; }
 .hero .mesh i:nth-child(3) { background: #fdeee3; opacity: .7; }
@@ -281,7 +274,12 @@ footer .logo .lw > span { color: var(--accent); }
 .slogan b { color: var(--brand-strong); }
 .hero .lead { color: var(--muted); }
 .hero .fine { color: var(--muted); }
-.hero .vsl { border-color: rgba(0, 69, 77, .15); }
+.hero .vsl { border-color: var(--line); background: linear-gradient(160deg, #ffffff, var(--soft)); }
+
+.hs-head .tit h2 { font-weight: 700; text-transform: uppercase; letter-spacing: -.02em; line-height: .95; font-size: clamp(30px, 4.6vw, 56px); color: var(--brand-strong); }
+.hs-head .tit h2 span { display: block; }
+.hs-head .tit h2 em { display: block; font-style: normal; font-weight: 300; font-size: .52em; letter-spacing: .08em; margin-top: .25em; color: var(--accent); }
+.hs-head .tit p { margin: 12px 0 0; color: var(--muted); font-size: clamp(15px, 1.6vw, 19px); font-weight: 300; }
 </style>
 </head>
 <body>
@@ -350,18 +348,10 @@ footer .logo .lw > span { color: var(--accent); }
   </div>
 </section>
 
-<section class="titulo-pilares" aria-label="Os 12 pilares do terreno biológico">
-  <div class="wrap">
-    <h2><span>Os 12 pilares</span><em>do terreno biológico</em></h2>
-    <i></i>
-    <p>Além do que se vê, o que realmente importa.</p>
-  </div>
-</section>
-
 <section class="hscroll" id="detalhes" aria-label="Os 12 pilares, um a um">
   <div class="hs-sticky">
     <div class="wrap hs-head">
-      <div class="head"><span class="eyebrow">Um a um</span><h2>Entenda cada <b>pilar</b></h2></div>
+      <div class="head tit"><h2><span>Os 12 pilares</span><em>do terreno biológico</em></h2><p>Além do que se vê, o que realmente importa.</p></div>
       <div class="hs-ctrl"><button type="button" id="hs-prev" aria-label="Pilar anterior">&larr;</button><button type="button" id="hs-next" aria-label="Próximo pilar">&rarr;</button></div>
     </div>
     <div class="wrap"><div class="hs-bar" aria-hidden="true"><span id="hs-prog"></span></div></div>
