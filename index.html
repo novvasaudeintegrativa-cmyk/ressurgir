@@ -214,7 +214,7 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 
 /* Carrossel horizontal: rolar a página move os cards para a direita */
 .hscroll { position: relative; padding: 0 !important; background: var(--soft); }
-.hs-sticky { display: grid; gap: 18px; padding: 56px 0 32px; }
+.hs-sticky { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 56px 0 64px; }
 .hs-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; }
 .hs-head .head { margin: 0; }
 .hs-ctrl { display: flex; align-items: center; gap: 10px; }
@@ -222,7 +222,7 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .hs-ctrl button:hover { background: var(--accent-soft); }
 .hs-bar { height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
 .hs-bar span { display: block; height: 100%; width: 8%; background: var(--brand-strong); border-radius: 4px; }
-.hs-viewport { overflow-x: auto; scroll-snap-type: x proximity; padding: 0 0 8px; scrollbar-width: none; }
+.hs-viewport { min-width: 0; overflow-x: auto; scroll-snap-type: x proximity; padding: 0 0 8px; scrollbar-width: none; }
 .hs-viewport::-webkit-scrollbar { display: none; }
 .hs-track { display: flex; gap: 20px; padding: 0 max(16px, calc((100vw - 1120px) / 2)); width: max-content; }
 .hs-card { position: relative; overflow: hidden; flex: none; width: min(340px, 80vw); height: 360px; padding: 28px; border-radius: 16px; display: grid; align-content: start; gap: 12px; scroll-snap-align: center; border: 1px solid var(--line); background: #fff; color: var(--ink); }
@@ -237,7 +237,7 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .hs-card.dark p { color: rgba(255, 255, 255, .8); }
 .hs-card .big { position: absolute; right: 18px; bottom: -14px; font: 700 130px/1 var(--font); letter-spacing: -.04em; color: currentColor; opacity: .07; pointer-events: none; }
 /* modo preso: a rolagem vertical empurra a trilha para a direita */
-.js .hscroll.pinned .hs-sticky { position: sticky; top: 0; height: 100vh; align-content: start; gap: 18px; padding: 96px 0 24px; overflow: hidden; }
+.js .hscroll.pinned .hs-sticky { position: sticky; top: 0; height: 100vh; align-content: center; gap: 22px; padding: 80px 0 56px; overflow: hidden; }
 .js .hscroll.pinned .hs-viewport { overflow: visible; }
 .js .hscroll.pinned .hs-track { will-change: transform; }
 .trust { background: var(--brand-dark); border: 0; }
@@ -273,10 +273,24 @@ footer .logo .lw > span { color: var(--accent); }
 .hero .fine { color: var(--muted); }
 .hero .vsl { border-color: var(--line); background: linear-gradient(160deg, #ffffff, var(--soft)); }
 
-.hs-head .tit h2 { font-weight: 700; text-transform: uppercase; letter-spacing: -.02em; line-height: .95; font-size: clamp(30px, 4.6vw, 56px); color: var(--brand-strong); }
-.hs-head .tit h2 span { display: block; }
-.hs-head .tit h2 em { display: block; font-style: normal; font-weight: 300; font-size: .52em; letter-spacing: .08em; margin-top: .25em; color: var(--accent); }
-.hs-head .tit p { margin: 12px 0 0; color: var(--muted); font-size: clamp(15px, 1.6vw, 19px); font-weight: 300; }
+
+.hs-title { text-align: center; padding-top: clamp(48px, 7vw, 88px); padding-bottom: 8px; }
+.hs-title h2 { font-weight: 300; text-transform: uppercase; letter-spacing: -.02em; line-height: .98; font-size: clamp(34px, 6vw, 76px); color: var(--ink); }
+.hs-title h2 span { display: block; }
+.hs-title h2 b { font-family: var(--font); font-style: normal; font-weight: 800; font-size: 1em; color: #00514f; }
+.hs-title h2 em { display: block; font-style: normal; font-weight: 300; font-size: .5em; letter-spacing: .08em; margin-top: .3em; color: var(--accent); }
+.hs-title p { margin: 14px 0 0; color: var(--muted); font-size: clamp(16px, 1.8vw, 21px); font-weight: 300; }
+.hs-head { justify-content: flex-end; }
+
+.hs-sticky .hs-title { padding: 0 16px; }
+.hs-sticky .hs-title h2 { font-size: clamp(30px, 4.4vw, 58px); }
+.hs-sticky .hs-title p { margin-top: 8px; font-size: clamp(14px, 1.5vw, 18px); }
+.hs-top { width: min(1120px, calc(100% - 32px)); margin: 0 auto; display: flex; align-items: center; gap: 20px; }
+.hs-progress { flex: 1; height: 5px; border-radius: 5px; background: #cfe3df; overflow: hidden; }
+.hs-progress span { display: block; height: 100%; width: 8%; background: var(--brand-strong); border-radius: 5px; }
+.hs-top .hs-ctrl button { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--brand-strong); background: #fff; color: var(--brand-strong); font-size: 20px; cursor: pointer; }
+.hs-top .hs-ctrl button:hover { background: var(--brand-strong); color: #fff; }
+.hero { padding-bottom: clamp(88px, 11vw, 150px); }
 </style>
 </head>
 <body>
@@ -344,11 +358,14 @@ footer .logo .lw > span { color: var(--accent); }
 
 <section class="hscroll" id="detalhes" aria-label="Os 12 pilares, um a um">
   <div class="hs-sticky">
-    <div class="wrap hs-head">
-      <div class="head tit"><h2><span>Os 12 pilares</span><em>do terreno biológico</em></h2><p>Além do que se vê, o que realmente importa.</p></div>
+    <div class="hs-title">
+      <h2><span>Os <b>12 Pilares</b></span><em>do Terreno Biológico</em></h2>
+      <p>Além do que se vê, o que realmente importa.</p>
+    </div>
+    <div class="hs-top">
+      <div class="hs-progress" aria-hidden="true"><span id="hs-prog"></span></div>
       <div class="hs-ctrl"><button type="button" id="hs-prev" aria-label="Pilar anterior">&larr;</button><button type="button" id="hs-next" aria-label="Próximo pilar">&rarr;</button></div>
     </div>
-    <div class="wrap"><div class="hs-bar" aria-hidden="true"><span id="hs-prog"></span></div></div>
     <div class="hs-viewport" id="hs-viewport"><div class="hs-track" id="hs-track"></div></div>
   </div>
 </section>
@@ -472,7 +489,7 @@ const TEXTOS = [
     c.querySelector("p").textContent = TEXTOS[i];
     track.append(c);
   });
-  const sec = document.getElementById("detalhes"), vp = document.getElementById("hs-viewport"), prog = document.getElementById("hs-prog");
+  const titulo = { offsetHeight: 0 }, sec = document.getElementById("detalhes"), vp = document.getElementById("hs-viewport"), prog = document.getElementById("hs-prog");
   const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let maxX = 0, ativo = false;
   function medir() {
@@ -480,12 +497,12 @@ const TEXTOS = [
     maxX = Math.max(0, track.scrollWidth - window.innerWidth);
     if (reduzido || maxX < 40) { sec.classList.remove("pinned"); sec.style.height = ""; track.style.transform = ""; ativo = false; return; }
     sec.classList.add("pinned"); ativo = true;
-    sec.style.height = (maxX + window.innerHeight) + "px";
+    sec.style.height = (maxX + window.innerHeight + titulo.offsetHeight) + "px";
     atualizar();
   }
   function progresso() {
-    const r = sec.getBoundingClientRect(), total = sec.offsetHeight - window.innerHeight;
-    return Math.min(1, Math.max(0, -r.top / Math.max(1, total)));
+    const r = sec.getBoundingClientRect(), total = sec.offsetHeight - window.innerHeight - titulo.offsetHeight;
+    return Math.min(1, Math.max(0, (-r.top - titulo.offsetHeight) / Math.max(1, total)));
   }
   function atualizar() {
     const p = ativo ? progresso() : vp.scrollLeft / Math.max(1, vp.scrollWidth - vp.clientWidth);
@@ -495,7 +512,7 @@ const TEXTOS = [
   function ir(dir) {
     const passo = 360 / Math.max(1, maxX);
     if (ativo) {
-      const total = sec.offsetHeight - window.innerHeight, topo = sec.getBoundingClientRect().top + window.scrollY;
+      const total = sec.offsetHeight - window.innerHeight - titulo.offsetHeight, topo = sec.getBoundingClientRect().top + window.scrollY + titulo.offsetHeight;
       window.scrollTo({ top: topo + Math.min(1, Math.max(0, progresso() + dir * passo)) * total, behavior: "smooth" });
     } else vp.scrollBy({ left: dir * 360, behavior: "smooth" });
   }
