@@ -258,6 +258,30 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 footer .logo { color: var(--ink); }
 footer .logo .lw > span { color: var(--accent); }
 @media (max-width: 760px) { nav .logo .lw small { display: none; } }
+
+/* Título dos pilares (abaixo dos cards) em verde */
+.titulo-pilares { background: #fff; text-align: center; padding: clamp(56px, 8vw, 96px) 0; }
+.titulo-pilares h2 { font-weight: 700; text-transform: uppercase; letter-spacing: -.02em; line-height: .95; font-size: clamp(40px, 7vw, 88px); color: var(--brand-strong); }
+.titulo-pilares h2 span { display: block; }
+.titulo-pilares h2 em { display: block; font-style: normal; font-weight: 300; font-size: .52em; letter-spacing: .08em; margin-top: .25em; color: var(--accent); }
+.titulo-pilares i { display: block; width: 120px; height: 3px; margin: 28px auto 20px; background: var(--brand); border-radius: 3px; }
+.titulo-pilares p { margin: 0; color: var(--muted); font-size: clamp(17px, 2vw, 22px); font-weight: 300; }
+
+/* Hero mais clara */
+.hero { background: linear-gradient(165deg, #eafaf7 0%, #c4f0e8 55%, #9fe3d8 100%); color: var(--ink); }
+.hero .mesh { opacity: .5; }
+.hero .mesh i:nth-child(1) { background: #00dcc0; opacity: .3; }
+.hero .mesh i:nth-child(2) { background: #7af0dc; opacity: .5; }
+.hero .mesh i:nth-child(3) { background: #fdeee3; opacity: .7; }
+.hero .mesh i:nth-child(4) { background: #fff; opacity: .6; }
+.hero .eyebrow { color: var(--accent); }
+.hero h1, .hero-text h1 { color: var(--ink); }
+.hero h1 b, .hero-text h1 b, .hero-text h1 b:last-child { color: var(--brand-strong); }
+.slogan { color: var(--ink); }
+.slogan b { color: var(--brand-strong); }
+.hero .lead { color: var(--muted); }
+.hero .fine { color: var(--muted); }
+.hero .vsl { border-color: rgba(0, 69, 77, .15); }
 </style>
 </head>
 <body>
@@ -317,7 +341,6 @@ footer .logo .lw > span { color: var(--accent); }
 
 <section id="pilares" aria-label="Os 12 pilares do terreno biológico">
   <div class="stage" id="stage" role="group" aria-label="Os 12 pilares do terreno biológico">
-    <div class="tx" style="left:2.6cqw;top:3.2cqw"><h3>Os 12 pilares<em>do terreno biológico</em></h3><i></i><p>Além do que se vê, o que realmente importa.</p></div>
     <div class="blk" style="top:14%"><b>Na superfície</b><span>Apenas parte do quadro aparece.</span></div>
     <div class="blk" style="top:55%"><b>Na profundidade</b><span>Muitas causas ficam ocultas e não são investigadas.</span></div>
   </div>
@@ -335,6 +358,14 @@ footer .logo .lw > span { color: var(--accent); }
     </div>
     <div class="wrap"><div class="hs-bar" aria-hidden="true"><span id="hs-prog"></span></div></div>
     <div class="hs-viewport" id="hs-viewport"><div class="hs-track" id="hs-track"></div></div>
+  </div>
+</section>
+
+<section class="titulo-pilares" aria-label="Os 12 pilares do terreno biológico">
+  <div class="wrap">
+    <h2><span>Os 12 pilares</span><em>do terreno biológico</em></h2>
+    <i></i>
+    <p>Além do que se vê, o que realmente importa.</p>
   </div>
 </section>
 
