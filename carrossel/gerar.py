@@ -26,6 +26,7 @@ NOMES = [
 ]
 assert len(TEXTOS) == 12 and len(NOMES) == 12
 TOTAL = 14
+USAR_FOTOS = False  # mude para True quando as fotos dos slides de imagem estiverem prontas
 
 # recortes (deslocamento vertical em % da cena mobile, zoom) para os slides de imagem
 RECORTES = {1: (14, 1.0), 3: (0, 1.15), 5: (38, 1.1), 7: (52, 1.2), 9: (100, 1.0), 11: (30, 1.35)}
@@ -99,8 +100,8 @@ corpo = (
     '<h1 style="font-size:104px;font-weight:300;margin-top:26px">Os <b style="font-weight:800;color:#00dcc0">12 pilares</b><br>do terreno biológico</h1></div>'
     '<div class="rodape" style="justify-content:flex-end"><div class="dir">Deslize<div class="seta">&rarr;</div></div></div>'
 )
-fundo = (f"background:linear-gradient(180deg,rgba(0,38,44,.9) 0,rgba(0,38,44,.55) 38%,rgba(0,38,44,0) 62%),"
-         f"url('file:///{foto}') center 18%/ 118% auto no-repeat,#00454d;")
+fundo = (f"background:linear-gradient(180deg,rgba(0,38,44,.95) 0,rgba(0,38,44,.8) 24%,rgba(0,38,44,.25) 40%,rgba(0,38,44,0) 48%),linear-gradient(0deg,rgba(0,30,35,.7) 0,rgba(0,30,35,0) 20%),"
+         f"url('file:///{foto}') center 150px/ 1080px auto no-repeat,#5aa9a6;")
 slides.append(pagina(corpo, fundo))
 
 for i in range(12):
@@ -113,10 +114,16 @@ for i in range(12):
     icone = f'<div class="icone" style="bottom:210px"><svg viewBox="0 0 24 24"><use href="#i{i + 1}"/></svg></div>'
     if (i + 1) % 2:  # ímpares: slide de imagem
         y, z = RECORTES[i + 1]
-        fundo = (f"background:linear-gradient(180deg,rgba(0,38,44,.88) 0,rgba(0,38,44,.45) 36%,rgba(0,38,44,0) 58%),"
-                 f"linear-gradient(0deg,rgba(0,30,35,.85) 0,rgba(0,30,35,0) 30%),{cena(y, z)},#00454d;")
+        if USAR_FOTOS:
+            fundo = (f"background:linear-gradient(180deg,rgba(0,38,44,.88) 0,rgba(0,38,44,.45) 36%,rgba(0,38,44,0) 58%),"
+                     f"linear-gradient(0deg,rgba(0,30,35,.85) 0,rgba(0,30,35,0) 30%),{cena(y, z)},#00454d;")
+            vazio = ""
+        else:  # sem foto: fundo liso com o ícone grande, pronto para receber a imagem depois
+            fundo = "background:linear-gradient(200deg,#00595d 0%,#00454d 55%,#003a41 100%);"
+            vazio = (f'<div style="position:absolute;left:0;right:0;top:470px;display:grid;place-items:center;color:#00dcc0;opacity:.16">'
+                     f'<svg viewBox="0 0 24 24" width="420" height="420" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round"><use href="#i{i + 1}"/></svg></div>')
         sub = (f'<div class="corpo" style="bottom:210px;font-size:40px;max-width:760px;left:260px">{texto}</div>')
-        slides.append(pagina(cab + icone + sub + rodape(n), fundo))
+        slides.append(pagina(vazio + cab + icone + sub + rodape(n), fundo))
     else:  # pares: slide de texto
         fundo = "background:linear-gradient(160deg,#00454d 0%,#00595d 55%,#007a78 100%);"
         grande = f'<div class="num">{i + 1:02d}</div>'
