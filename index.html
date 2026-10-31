@@ -165,9 +165,9 @@ nav { background: rgba(0, 38, 44, .92); border-bottom: 1px solid rgba(255, 255, 
 nav .btn-primary, .hero .btn-primary, .cta .btn-primary { background: linear-gradient(90deg, #00dcc0, #7af0dc); border-color: transparent; color: #00262c; font-weight: 600; }
 nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { background: #7af0dc; }
 .vsl { border-color: rgba(255, 255, 255, .15); }
-#pilares { padding: clamp(56px, 8vw, 110px) 16px; background: #fff; }
+#pilares { padding: 0; background: #00454d url("assets/cena-mulher-final.jpg") center / cover no-repeat; }
 /* Cena dos pilares: layout da referência; ícones e textos são elementos da página */
-.stage { container-type: inline-size; position: relative; width: min(1120px, 100%); margin: 0 auto; aspect-ratio: 16 / 9; border-radius: 20px; background: #00454d url("assets/cena-mulher-final.jpg") center / cover no-repeat; box-shadow: var(--shadow-2); }
+.stage { container-type: inline-size; position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; background: none; }
 .stage svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .stage .tx { position: absolute; color: #fff; pointer-events: none; text-shadow: 0 2px 14px rgba(0, 25, 30, .55); }
 .stage .tx h3 { font: 700 3.3cqw/.95 var(--font); letter-spacing: -.02em; text-transform: uppercase; color: #fff; }
@@ -197,19 +197,18 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .node.top.tl .lab { right: calc(100% + .6cqw); }
 .node.top.tr .lab { left: calc(100% + .6cqw); }
 .stage-grid, .stage-info { display: none; }
+.stage .zt { display: none; position: absolute; left: 4%; font: 700 10px var(--font); letter-spacing: .14em; color: var(--brand); text-shadow: 0 1px 6px rgba(0, 0, 0, .7); }
 @media (max-width: 760px) {
-  #pilares { padding: 24px 16px 8px; }
-  .stage { aspect-ratio: 4 / 5; border-radius: 16px; }
-    .stage svg.lines, .stage .blk, .node { display: none; }
-  .stage .tx { left: 5% !important; top: auto !important; bottom: 5%; }
-  .stage .tx h3 { font-size: 9cqw; } .stage .tx p { font-size: 4cqw; max-width: 60cqw; }
-  .stage-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 12px 0; }
-  .stage-grid button { position: relative; aspect-ratio: 1; border-radius: 50%; border: 2px solid var(--brand); background: var(--brand-dark); color: var(--brand); display: grid; place-items: center; padding: 0; cursor: pointer; }
-  .stage-grid button svg { width: 56%; height: 56%; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-  .stage-grid button.on { background: var(--brand); color: #00262c; transform: scale(1.1); }
-  .stage-info { display: grid; gap: 4px; margin: 0 0 24px; padding: 16px; border-radius: 12px; background: rgba(0, 38, 44, .8); border: 1px solid var(--brand); color: #fff; }
-  .stage-info b { font: 700 17px var(--font); color: var(--brand); }
-  .stage-info span { font: 300 15px/1.5 var(--font); }
+  #pilares { background: #00454d url("assets/cena-mobile-final.jpg") center / cover no-repeat; }
+  .stage { aspect-ratio: 9 / 16; }
+  .stage svg.lines, .stage .blk, .node .pop, .stage-grid, .stage-info { display: none; }
+  .node { left: var(--mx) !important; top: var(--my) !important; transform: translate(-50%, 0); pointer-events: none; }
+  .node .dot { width: 40px; height: 40px; min-width: 0; min-height: 0; border-width: 2px; transform: none !important; background: rgba(0, 50, 56, .9) !important; color: var(--brand) !important; }
+  .node .dot em { width: 17px; height: 17px; min-width: 0; font-size: 10px; line-height: 17px; top: -5px; left: -5px; }
+  .node .lab { display: block; opacity: 1 !important; max-width: 19cqw; margin-top: 4px; padding: 2px 6px; font-size: 9.5px; line-height: 1.1; border-radius: 8px; }
+  .node.top .lab { position: static; transform: none; margin-top: 4px; }
+  .node.top { display: block; }
+  .stage .zt { display: block; }
 }
 @media (prefers-reduced-motion: reduce) { .node .dot, .node .pop { transition: none; } }
 
@@ -338,11 +337,8 @@ footer .logo .lw > span { color: var(--accent); }
 <section id="pilares" aria-label="Os 12 pilares do terreno biológico">
   <div class="stage" id="stage" role="group" aria-label="Os 12 pilares do terreno biológico">
     <div class="blk" style="top:14%"><b>Na superfície</b><span>Apenas parte do quadro aparece.</span></div>
+    <span class="zt" style="top:8%">NA SUPERFÍCIE</span><span class="zt" style="top:38%">NA PROFUNDIDADE</span>
     <div class="blk" style="top:55%"><b>Na profundidade</b><span>Muitas causas ficam ocultas e não são investigadas.</span></div>
-  </div>
-  <div class="wrap">
-    <div class="stage-grid" id="stage-grid"></div>
-    <div class="stage-info" id="stage-info" aria-live="polite"><b>Toque em um ícone</b><span>Cada círculo é um pilar do terreno biológico.</span></div>
   </div>
 </section>
 
@@ -514,7 +510,7 @@ const TEXTOS = [
 
 // Cena dos 12 pilares: layout da referência, ícones fora da imagem
 (function () {
-  const stage = document.getElementById("stage"), info = document.getElementById("stage-info"), grade = document.getElementById("stage-grid");
+  const stage = document.getElementById("stage");
   const CURTOS = ["Genética e epigenética", "Conflitos emocionais", "Toxinas ambientais", "Hidratação e água", "Metais tóxicos", "Saúde gastrointestinal", "Fungos e parasitas", "Carências nutricionais", "Imunidade e circulação", "Saúde mitocondrial", "Tríade hormonal", "Conflitos sistêmicos"];
   // [x do ícone, y do ícone, x do ponto, y do ponto] numa grade de 1600 x 900
   // 12 ícones em um círculo perfeito (grade 1600 x 900, círculo no centro da mulher)
@@ -532,11 +528,8 @@ const TEXTOS = [
   svg.append(anel);
   stage.prepend(svg);
   const nodes = [];
-  const mostrar = i => {
-    info.querySelector("b").textContent = (i + 1) + ". " + PILARES[i][0];
-    info.querySelector("span").textContent = TEXTOS[i];
-    grade.querySelectorAll("button").forEach((b, k) => b.classList.toggle("on", k === i));
-  };
+  const MOB = [[13, 17], [33, 17], [67, 17], [87, 17], [14, 42], [14, 52], [14, 62], [14, 72], [86, 42], [86, 52], [86, 62], [86, 72]];
+  const mostrar = () => {};
   PILARES.forEach(([nome], i) => {
     const [x, y, tx, ty] = POS[i], surf = i < 4, ly = surf ? y + 36 : y + 36;
     const ln = document.createElementNS(svgNS, "line");
@@ -549,6 +542,7 @@ const TEXTOS = [
     const n = document.createElement("div");
     n.className = "node" + (x < 500 ? " l" : x > 1100 ? " r" : "") + (y > 650 ? " up" : "") + (y < 200 ? " top " + (x < 800 ? "tl" : "tr") : "");
     n.style.left = (x / 16).toFixed(2) + "%"; n.style.top = (y / 9).toFixed(2) + "%";
+    n.style.setProperty("--mx", MOB[i][0] + "%"); n.style.setProperty("--my", MOB[i][1] + "%");
     n.innerHTML = '<button class="dot" type="button" aria-label="' + (i + 1) + ". " + nome + '"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i' + (i + 1) + '"/></svg><em>' + (i + 1) + '</em></button><span class="lab"></span><div class="pop" role="tooltip"><b></b><span></span></div>';
     n.querySelector(".lab").textContent = CURTOS[i];
     n.querySelector(".pop b").textContent = (i + 1) + ". " + nome;
@@ -562,11 +556,6 @@ const TEXTOS = [
       mostrar(i);
     });
     stage.append(n); nodes.push(n);
-    const g = document.createElement("button");
-    g.type = "button"; g.setAttribute("aria-label", (i + 1) + ". " + nome);
-    g.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i' + (i + 1) + '"/></svg>';
-    g.addEventListener("click", () => mostrar(i));
-    grade.append(g);
   });
   document.addEventListener("click", e => { if (!e.target.closest(".node")) nodes.forEach(o => o.classList.remove("open")); });
 })();
