@@ -193,6 +193,8 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .node.r .pop { left: auto; right: 0; transform: translate(0, 6px); }
 .node.l:hover .pop, .node.l:focus-within .pop, .node.l.open .pop, .node.r:hover .pop, .node.r:focus-within .pop, .node.r.open .pop { transform: none; }
 .node.up .pop { top: auto; bottom: calc(100% + 14px); }
+.node.top { display: flex; flex-direction: column-reverse; align-items: center; }
+.node.top .lab { margin: 0 0 .5cqw; }
 .stage-grid, .stage-info { display: none; }
 @media (max-width: 760px) {
   #pilares { background-position: 50% 0; background-size: auto 62vw; background-size: cover; }
@@ -496,14 +498,19 @@ const TEXTOS = [
   const stage = document.getElementById("stage"), info = document.getElementById("stage-info"), grade = document.getElementById("stage-grid");
   const CURTOS = ["Genética e epigenética", "Conflitos emocionais", "Toxinas ambientais", "Hidratação e água", "Metais tóxicos", "Saúde gastrointestinal", "Fungos e parasitas", "Carências nutricionais", "Imunidade e circulação", "Saúde mitocondrial", "Tríade hormonal", "Conflitos sistêmicos"];
   // [x do ícone, y do ícone, x do ponto, y do ponto] numa grade de 1600 x 900
-  const POS = [
-    [520, 195, 575, 305], [660, 100, 690, 235], [940, 100, 910, 235], [1080, 195, 1025, 305],
-    [380, 470, 610, 490], [430, 595, 625, 600], [490, 715, 660, 715], [620, 820, 720, 790],
-    [1220, 470, 990, 490], [1170, 595, 985, 600], [1110, 715, 950, 715], [980, 820, 900, 790]
-  ];
+  // 12 ícones em um círculo perfeito (grade 1600 x 900, círculo no centro da mulher)
+  const CX = 800, CY = 470, R = 380, RD = 190;
+  const POS = Array.from({ length: 12 }, (_, i) => {
+    const a = (-105 + i * 30) * Math.PI / 180, c = Math.cos(a), sn = Math.sin(a);
+    return [CX + R * c, CY + R * sn, CX + RD * c, CY + RD * sn];
+  });
   const svgNS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(svgNS, "svg");
   svg.setAttribute("class", "lines"); svg.setAttribute("viewBox", "0 0 1600 900"); svg.setAttribute("aria-hidden", "true");
+  const anel = document.createElementNS(svgNS, "circle");
+  anel.setAttribute("cx", CX); anel.setAttribute("cy", CY); anel.setAttribute("r", R);
+  anel.setAttribute("fill", "none"); anel.setAttribute("stroke", "#00dcc0"); anel.setAttribute("stroke-opacity", ".35"); anel.setAttribute("stroke-width", "2"); anel.setAttribute("stroke-dasharray", "2 9"); anel.setAttribute("stroke-linecap", "round");
+  svg.append(anel);
   stage.prepend(svg);
   const nodes = [];
   const mostrar = i => {
@@ -521,7 +528,7 @@ const TEXTOS = [
     c.setAttribute("cx", tx); c.setAttribute("cy", ty); c.setAttribute("r", "7"); c.setAttribute("fill", "#00dcc0");
     svg.append(c);
     const n = document.createElement("div");
-    n.className = "node" + (x < 450 ? " l" : x > 1150 ? " r" : "") + (y > 650 ? " up" : "");
+    n.className = "node" + (x < 500 ? " l" : x > 1100 ? " r" : "") + (y > 650 ? " up" : "") + (y < 200 ? " top" : "");
     n.style.left = (x / 16).toFixed(2) + "%"; n.style.top = (y / 9).toFixed(2) + "%";
     n.innerHTML = '<button class="dot" type="button" aria-label="' + (i + 1) + ". " + nome + '"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i' + (i + 1) + '"/></svg><em>' + (i + 1) + '</em></button><span class="lab"></span><div class="pop" role="tooltip"><b></b><span></span></div>';
     n.querySelector(".lab").textContent = (i + 1) + ". " + CURTOS[i];
