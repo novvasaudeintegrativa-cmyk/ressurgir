@@ -7,6 +7,7 @@
 <title>Ressurgir: Desparasitação Absoluta — Os 12 Pilares do Terreno Biológico</title>
 <meta name="description" content="Conheça os 12 pilares do terreno biológico e a abordagem integrativa do Ressurgir: Desparasitação Absoluta.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" href="assets/logo-marca.svg" type="image/svg+xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
 :root {
@@ -54,8 +55,6 @@ h3 { font-size: 18px; font-weight: 700; letter-spacing: -.005em; line-height: 1.
 /* Surgir ao rolar */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0ms); }
 .js .reveal.in { opacity: 1; transform: none; }
-.js .pillar.reveal.in:hover { transform: translateY(-2px); border-color: var(--accent); }
-.js .zone.profundidade .pillar.reveal.in:hover { border-color: var(--deep); }
 @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
 
 /* Nav */
@@ -97,50 +96,6 @@ h1 b, h2 b { font-weight: 800; }
 .fine { font-size: 13px; color: var(--muted); }
 
 /* Pilares */
-/* Roda dos pilares */
-.wheel { width: min(620px, 100%); margin: 0 auto 56px; position: relative; }
-.wheel svg { width: 100%; height: auto; display: block; overflow: visible; }
-.wheel .ring { fill: #fff; stroke: var(--line); stroke-width: 1.5; }
-.wheel .waterline { stroke: var(--brand); stroke-width: 1.5; stroke-dasharray: 3 6; opacity: .7; }
-.wheel .zl { font: 700 9px var(--font); letter-spacing: .1em; fill: var(--muted); }
-.wheel .figura { pointer-events: none; mix-blend-mode: multiply; }
-.wheel .node { cursor: pointer; outline: none; }
-.wheel .node .disc { fill: #fff; stroke: var(--deep); stroke-width: 2; transition: stroke .25s, stroke-width .25s; }
-.wheel .node.sup .disc { stroke: var(--brand); }
-.wheel .node .scale { transition: transform .35s cubic-bezier(.2, .8, .2, 1); transform-box: fill-box; transform-origin: center; }
-.wheel .node.on .scale { transform: scale(1.3); }
-.wheel .node.on .disc { stroke-width: 4; filter: drop-shadow(0 6px 10px rgba(0, 55, 112, .18)); }
-.wheel .node:focus-visible .disc { stroke: var(--ink); stroke-width: 4; }
-.wheel .num { font: 700 11px var(--mono); fill: var(--accent); text-anchor: middle; }
-.wheel-info { display: grid; justify-items: center; gap: 4px; margin-top: 12px; text-align: center; min-height: 118px; }
-.wheel .c-zone { font: 700 12px var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
-.wheel .c-zone.pro { color: var(--deep); }
-.wheel .c-num { font: 400 48px/1.1 "Young Serif", Georgia, serif; color: var(--ink); letter-spacing: -.02em; }
-.wheel .c-name { font: 700 20px/1.3 var(--font); color: var(--ink); max-width: 30ch; text-wrap: balance; }
-@media (prefers-reduced-motion: reduce) { .wheel .node .scale { transition: none; } }
-.zones { display: grid; gap: 20px; }
-.zone { border-radius: 16px; padding: clamp(18px, 3vw, 28px); display: grid; gap: 18px; border: 1px solid var(--line); }
-.zone.superficie { background: #fff; }
-.zone.profundidade { background: var(--soft); }
-.zone { border-radius: 12px; }
-.zone > header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.zone > header h3 { font-size: 22px; font-weight: 800; }
-.zone > header span { font-size: 14px; color: var(--muted); }
-.zone .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
-.pillar { border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-1); padding: 20px; display: grid; gap: 10px; align-content: start; background: #fff; transition: border-color .2s, transform .2s; }
-.pillar .ic { width: 52px; height: 52px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; margin-bottom: 2px; }
-.pillar .ic svg, .wheel .ico { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.pillar .ic svg { width: 28px; height: 28px; }
-.wheel .ico { color: var(--accent); }
-.pillar p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); font-weight: 300; }
-.pillar .img { align-self: start; width: 100%; aspect-ratio: 1; flex: none; border-radius: 8px; overflow: hidden; background: #fff; margin-bottom: 4px; }
-.pillar .img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.35); }
-.pillar:hover { border-color: var(--accent); transform: translateY(-2px); }
-.pillar h3 { font-size: 16px; overflow-wrap: anywhere; hyphens: auto; }
-.pillar .n { font: 700 13px/1 var(--mono); color: var(--accent); }
-.zone.profundidade .pillar { border-color: #bfe0de; }
-.zone.profundidade .pillar .n, .zone.profundidade > header h3 { color: var(--deep); }
-.zone.profundidade { background: var(--deep-soft); border-color: #cfe7e5; }
 .iceberg { margin-top: 40px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
 
 /* Faixa de confiança */
@@ -210,16 +165,82 @@ nav { background: rgba(0, 38, 44, .92); border-bottom: 1px solid rgba(255, 255, 
 nav .btn-primary, .hero .btn-primary, .cta .btn-primary { background: linear-gradient(90deg, #00dcc0, #7af0dc); border-color: transparent; color: #00262c; font-weight: 600; }
 nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { background: #7af0dc; }
 .vsl { border-color: rgba(255, 255, 255, .15); }
-#pilares { background: var(--cream); }
-.zone.profundidade { background: var(--brand-dark); border-color: var(--brand-dark); }
-.zone.profundidade > header h3 { color: #fff; font-weight: 600; }
-.zone.profundidade > header span { color: var(--lavender); }
-.zone.profundidade .pillar { border-color: transparent; }
-.zone.profundidade .pillar .n { color: var(--accent); }
-.zone.superficie { border-color: #f0dccb; }
-.zone > header h3 { font-weight: 600; }
-.wheel .c-num { font: 600 48px/1.1 var(--font); }
-.wheel .c-zone.pro { color: var(--accent); }
+#pilares { padding: 0; background: #00454d url("assets/cena-mulher-final.jpg") center / cover no-repeat; }
+/* Cena dos pilares: layout da referência; ícones e textos são elementos da página */
+.stage { container-type: inline-size; position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; background: none; }
+.stage svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.stage .tx { position: absolute; color: #fff; pointer-events: none; text-shadow: 0 2px 14px rgba(0, 25, 30, .55); }
+.stage .tx h3 { font: 700 3.3cqw/.95 var(--font); letter-spacing: -.02em; text-transform: uppercase; color: #fff; }
+.stage .tx h3 em { display: block; font-style: normal; font-weight: 300; font-size: .62em; letter-spacing: .08em; margin-top: .5cqw; }
+.stage .tx i { display: block; width: 7cqw; height: 2px; background: var(--brand); margin: 1.2cqw 0; }
+.stage .tx p { font: 300 1.3cqw/1.4 var(--font); max-width: 19cqw; }
+.stage .blk { position: absolute; left: 83cqw; width: 15.5cqw; padding-left: 1.4cqw; border-left: 2px solid var(--brand); color: #fff; pointer-events: none; text-shadow: 0 2px 12px rgba(0, 25, 30, .6); }
+.stage .blk b { display: block; font: 700 1.6cqw/1.1 var(--font); letter-spacing: -.01em; text-transform: uppercase; }
+.stage .blk span { display: block; margin-top: .5cqw; font: 400 1.15cqw/1.35 var(--font); }
+.node { position: absolute; transform: translate(-50%, -50%); z-index: 2; outline: none; }
+.node:hover, .node:focus-within, .node.open { z-index: 8; }
+.node .dot { position: relative; display: grid; place-items: center; width: 4.3cqw; height: 4.3cqw; min-width: 38px; min-height: 38px; margin: 0 auto; padding: 0; border-radius: 50%; border: 2px solid var(--brand); background: rgba(0, 50, 56, .9); color: var(--brand); box-shadow: 0 6px 18px rgba(0, 30, 35, .45); cursor: pointer; transition: transform .25s cubic-bezier(.2, .8, .2, 1), background .2s, color .2s; }
+.node .dot svg { width: 56%; height: 56%; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.node .dot em { position: absolute; top: -.5cqw; left: -.5cqw; min-width: 18px; width: 1.9cqw; height: 1.9cqw; border-radius: 50%; background: var(--brand); color: #00262c; font: 700 max(10px, 1cqw)/1.9cqw var(--font); text-align: center; font-style: normal; }
+.node:hover .dot, .node:focus-within .dot, .node.open .dot { transform: scale(1.35); background: var(--brand); color: #00262c; }
+.node .lab { display: block; margin: .5cqw auto 0; width: max-content; max-width: 10.5cqw; text-align: center; font: 600 max(10.5px, .98cqw)/1.15 var(--font); letter-spacing: 0; color: #fff; background: rgba(0, 38, 44, .6); padding: .25cqw .8cqw; border-radius: 1cqw; transition: opacity .2s; }
+.node:hover .lab, .node:focus-within .lab, .node.open .lab { opacity: 0; }
+.node .pop { position: absolute; top: calc(100% + 14px); left: 50%; width: 280px; transform: translate(-50%, 6px); opacity: 0; visibility: hidden; transition: opacity .2s, transform .2s; background: rgba(0, 38, 44, .97); border: 1px solid var(--brand); border-radius: 14px; padding: 14px 16px 16px; color: #fff; text-align: left; box-shadow: var(--shadow-2); }
+.node .pop b { display: block; font: 700 16px/1.25 var(--font); color: var(--brand); margin-bottom: 6px; }
+.node .pop span { font: 300 14px/1.5 var(--font); }
+.node:hover .pop, .node:focus-within .pop, .node.open .pop { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+.node.l .pop { left: 0; transform: translate(0, 6px); }
+.node.r .pop { left: auto; right: 0; transform: translate(0, 6px); }
+.node.l:hover .pop, .node.l:focus-within .pop, .node.l.open .pop, .node.r:hover .pop, .node.r:focus-within .pop, .node.r.open .pop { transform: none; }
+.node.up .pop { top: auto; bottom: calc(100% + 14px); }
+.stage-grid, .stage-info { display: none; }
+@media (max-width: 760px) {
+  #pilares { background-position: 50% 0; background-size: auto 62vw; background-size: cover; }
+  .stage { aspect-ratio: 4 / 5; }
+    .stage svg.lines, .stage .blk, .node { display: none; }
+  .stage .tx { left: 5% !important; top: auto !important; bottom: 5%; }
+  .stage .tx h3 { font-size: 9cqw; } .stage .tx p { font-size: 4cqw; max-width: 60cqw; }
+  #pilares { background: var(--brand-dark); }
+  #pilares::before { content: ""; display: block; aspect-ratio: 4 / 5; position: absolute; left: 0; right: 0; top: 0; background: url("assets/cena-mulher-final.jpg") 50% 50% / cover no-repeat; }
+  .stage { position: relative; }
+  .stage-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 12px 0; }
+  .stage-grid button { position: relative; aspect-ratio: 1; border-radius: 50%; border: 2px solid var(--brand); background: var(--brand-dark); color: var(--brand); display: grid; place-items: center; padding: 0; cursor: pointer; }
+  .stage-grid button svg { width: 56%; height: 56%; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .stage-grid button.on { background: var(--brand); color: #00262c; transform: scale(1.1); }
+  .stage-info { display: grid; gap: 4px; margin: 0 0 24px; padding: 16px; border-radius: 12px; background: rgba(0, 38, 44, .8); border: 1px solid var(--brand); color: #fff; }
+  .stage-info b { font: 700 17px var(--font); color: var(--brand); }
+  .stage-info span { font: 300 15px/1.5 var(--font); }
+}
+@media (prefers-reduced-motion: reduce) { .node .dot, .node .pop { transition: none; } }
+
+/* Carrossel horizontal: rolar a página move os cards para a direita */
+.hscroll { position: relative; padding: 0; background: var(--soft); }
+.hs-sticky { display: grid; gap: 24px; padding: 72px 0 40px; }
+.hs-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; }
+.hs-head .head { margin: 0; }
+.hs-ctrl { display: flex; align-items: center; gap: 10px; }
+.hs-ctrl button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--accent); font-size: 20px; cursor: pointer; }
+.hs-ctrl button:hover { background: var(--accent-soft); }
+.hs-bar { height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.hs-bar span { display: block; height: 100%; width: 8%; background: var(--brand-strong); border-radius: 4px; }
+.hs-viewport { overflow-x: auto; scroll-snap-type: x proximity; padding: 8px 0 16px; scrollbar-width: none; }
+.hs-viewport::-webkit-scrollbar { display: none; }
+.hs-track { display: flex; gap: 20px; padding: 0 max(16px, calc((100vw - 1120px) / 2)); width: max-content; }
+.hs-card { position: relative; overflow: hidden; flex: none; width: min(340px, 80vw); height: 400px; padding: 28px; border-radius: 16px; display: grid; align-content: start; gap: 12px; scroll-snap-align: center; border: 1px solid var(--line); background: #fff; color: var(--ink); }
+.hs-card.dark { background: var(--brand-dark); border-color: var(--brand-dark); color: #fff; }
+.hs-card .tag { justify-self: start; font: 700 11px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; padding: 6px 10px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+.hs-card.dark .tag { background: rgba(0, 220, 192, .14); color: var(--brand); }
+.hs-card .ic { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.hs-card.dark .ic { background: rgba(0, 220, 192, .14); color: var(--brand); }
+.hs-card .ic svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.hs-card h3 { font-size: 22px; line-height: 1.2; font-weight: 600; }
+.hs-card p { margin: 0; font-size: 16px; line-height: 1.55; font-weight: 300; color: var(--muted); }
+.hs-card.dark p { color: rgba(255, 255, 255, .8); }
+.hs-card .big { position: absolute; right: 18px; bottom: -14px; font: 700 130px/1 var(--font); letter-spacing: -.04em; color: currentColor; opacity: .07; pointer-events: none; }
+/* modo preso: a rolagem vertical empurra a trilha para a direita */
+.js .hscroll.pinned .hs-sticky { position: sticky; top: 0; height: 100vh; align-content: center; padding-top: 80px; overflow: hidden; }
+.js .hscroll.pinned .hs-viewport { overflow: visible; }
+.js .hscroll.pinned .hs-track { will-change: transform; }
 .trust { background: var(--brand-dark); border: 0; }
 .trust b { color: var(--brand); font: 600 44px/1.1 var(--font); }
 .trust span { color: #cfe9e5; }
@@ -228,6 +249,13 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .cta .eyebrow { color: var(--brand); }
 .cta h2 b { color: var(--brand); }
 .cta .lead { color: rgba(255, 255, 255, .8); }
+.logo { display: inline-flex; align-items: center; gap: 12px; }
+.logo img { display: block; width: 40px; height: 40px; }
+.logo .lw { display: block; line-height: 1; font-weight: 700; font-size: 22px; letter-spacing: -.02em; }
+.logo .lw small { display: block; margin-top: 4px; font: 300 9.5px/1 var(--font); letter-spacing: .22em; text-transform: uppercase; opacity: .8; }
+footer .logo { color: var(--ink); }
+footer .logo .lw > span { color: var(--accent); }
+@media (max-width: 760px) { nav .logo .lw small { display: none; } }
 </style>
 </head>
 <body>
@@ -250,7 +278,7 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 
 <nav aria-label="Principal">
   <div class="wrap">
-    <a class="logo" href="#topo">Ressurgir<span>:</span></a>
+    <a class="logo" href="#topo" aria-label="Ressurgir"><img src="assets/logo-marca.svg" alt="" width="40" height="40"><span class="lw">Ressurgir<span>:</span><small>Desparasitação Absoluta</small></span></a>
     <ul>
       <li><a href="#pilares">Os 12 pilares</a></li>
       <li><a href="#oferta">Oferta</a></li>
@@ -285,15 +313,26 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
   </div>
 </header>
 
-<section id="pilares">
+<section id="pilares" aria-label="Os 12 pilares do terreno biológico">
+  <div class="stage" id="stage" role="group" aria-label="Os 12 pilares do terreno biológico">
+    <div class="tx" style="left:2.6cqw;top:3.2cqw"><h3>Os 12 pilares<em>do terreno biológico</em></h3><i></i><p>Além do que se vê, o que realmente importa.</p></div>
+    <div class="blk" style="top:14%"><b>Na superfície</b><span>Apenas parte do quadro aparece.</span></div>
+    <div class="blk" style="top:55%"><b>Na profundidade</b><span>Muitas causas ficam ocultas e não são investigadas.</span></div>
+  </div>
   <div class="wrap">
-    <div class="head">
-      <span class="eyebrow">O terreno biológico</span>
-      <h2>Os <b>12 pilares</b>, da superfície à profundidade</h2>
-      <p class="lead">Apenas parte do quadro aparece. Muitas causas ficam ocultas e não são investigadas. Explore cada pilar.</p>
+    <div class="stage-grid" id="stage-grid"></div>
+    <div class="stage-info" id="stage-info" aria-live="polite"><b>Toque em um ícone</b><span>Cada círculo é um pilar do terreno biológico.</span></div>
+  </div>
+</section>
+
+<section class="hscroll" id="detalhes" aria-label="Os 12 pilares, um a um">
+  <div class="hs-sticky">
+    <div class="wrap hs-head">
+      <div class="head"><span class="eyebrow">Um a um</span><h2>Entenda cada <b>pilar</b></h2></div>
+      <div class="hs-ctrl"><button type="button" id="hs-prev" aria-label="Pilar anterior">&larr;</button><button type="button" id="hs-next" aria-label="Próximo pilar">&rarr;</button></div>
     </div>
-    <div class="wheel" id="wheel" aria-label="Os 12 pilares do terreno biológico em círculo"></div>
-    <div class="zones" id="zones"></div>
+    <div class="wrap"><div class="hs-bar" aria-hidden="true"><span id="hs-prog"></span></div></div>
+    <div class="hs-viewport" id="hs-viewport"><div class="hs-track" id="hs-track"></div></div>
   </div>
 </section>
 
@@ -368,7 +407,7 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 
 <footer>
   <div class="wrap">
-    <a class="logo" href="#topo">Ressurgir<span>:</span> Desparasitação Absoluta</a>
+    <a class="logo" href="#topo" aria-label="Ressurgir"><img src="assets/logo-marca.svg" alt="" width="40" height="40"><span class="lw">Ressurgir<span>:</span><small>Desparasitação Absoluta</small></span></a>
     <p>Este conteúdo é informativo e educacional. Não substitui consulta, diagnóstico ou tratamento feito por profissional de saúde habilitado. Resultados variam de pessoa para pessoa e não são garantidos.</p>
     <p>© <span id="ano"></span> Ressurgir. Todos os direitos reservados.</p>
   </div>
@@ -389,10 +428,6 @@ const PILARES = [
   ["Sistema circulatório e imunológico", "profundidade"], ["Saúde mitocondrial", "profundidade"],
   ["Tríade metabólica e hormonal", "profundidade"], ["Conflitos sistêmicos, história familiar e espiritualidade", "profundidade"]
 ];
-const ZONAS = {
-  superficie: ["Na superfície", "Apenas parte do quadro aparece."],
-  profundidade: ["Na profundidade", "Muitas causas ficam ocultas e não são investigadas."]
-};
 const TEXTOS = [
   "Os genes indicam tendências. Alimentação, ambiente e hábitos influenciam como elas se expressam.",
   "Estresse e emoções mantidos por muito tempo interferem nos neurotransmissores, no sono e no humor.",
@@ -407,94 +442,111 @@ const TEXTOS = [
   "Metabolismo, glicemia e hormônios trabalham juntos e se influenciam, como sono, peso e disposição.",
   "Histórias de família, vínculos e valores fazem parte de olhar a pessoa como um todo."
 ];
-const raiz = document.getElementById("zones");
-Object.entries(ZONAS).forEach(([z, [titulo, sub]]) => {
-  const sec = document.createElement("div");
-  sec.className = "zone " + z;
-  sec.innerHTML = '<header><h3></h3><span></span></header><div class="grid"></div>';
-  sec.querySelector("h3").textContent = titulo;
-  sec.querySelector("span").textContent = sub;
-  PILARES.forEach(([nome, pz], i) => {
-    if (pz !== z) return;
-    const d = document.createElement("div");
-    d.className = "pillar";
-    d.innerHTML = '<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i' + (i + 1) + '"/></svg></span><span class="n">' + String(i + 1).padStart(2, "0") + '</span><h3></h3><p></p>';
-    d.querySelector("h3").textContent = nome;
-    d.querySelector("p").textContent = TEXTOS[i];
-    sec.querySelector(".grid").append(d);
-  });
-  raiz.append(sec);
-});
 
-const link = WHATSAPP ? "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(WHATSAPP_MSG) : "#oferta";
-document.querySelectorAll("[data-cta]").forEach(a => { a.href = link; if (WHATSAPP) { a.target = "_blank"; a.rel = "noopener"; } });
-
-document.getElementById("vsl-play").addEventListener("click", () => {
-  if (!VSL_URL) { document.querySelector(".vsl-note").textContent = "Vídeo em breve."; return; }
-  const f = document.createElement("iframe");
-  f.src = VSL_URL + (VSL_URL.includes("?") ? "&" : "?") + "autoplay=1";
-  f.allow = "autoplay; fullscreen; picture-in-picture"; f.allowFullscreen = true; f.title = "Vídeo de apresentação";
-  document.getElementById("vsl").replaceChildren(f);
-});
-// Roda dos 12 pilares (SVG gerado por JS)
+// Carrossel: cards iguais, alternando claro e escuro
 (function () {
-  const NS = "http://www.w3.org/2000/svg", C = 350, R = 265, RN = 36;
-  const el = (n, a = {}, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (p) p.append(e); return e; };
-  const wheel = document.getElementById("wheel");
-  const svg = el("svg", { viewBox: "0 0 700 700", role: "group" }, wheel);
-  const defs = el("defs", {}, svg);
-  el("circle", { class: "ring", cx: C, cy: C, r: R }, svg);
-  el("line", { class: "waterline", x1: C - R, y1: C, x2: C + R, y2: C }, svg);
-  el("text", { class: "zl", x: C - R + 16, y: C - 9 }, svg).textContent = "SUPERFÍCIE";
-  el("text", { class: "zl", x: C - R + 16, y: C + 18 }, svg).textContent = "PROFUNDIDADE";
-  const IM = 370;
-  el("image", { href: "assets/iceberg-mulher.jpg", x: C - IM / 2, y: C - IM * 0.395, width: IM, height: IM, class: "figura", "aria-hidden": "true" }, svg);
-  const ANG = [-150, -110, -70, -30, 20, 40, 60, 80, 100, 120, 140, 160];
-  const nodes = [];
+  const track = document.getElementById("hs-track");
   PILARES.forEach(([nome, z], i) => {
-    const a = ANG[i] * Math.PI / 180, x = C + R * Math.cos(a), y = C + R * Math.sin(a);
-    const g = el("g", { class: "node " + (z === "superficie" ? "sup" : "pro"), tabindex: 0, role: "button", "aria-label": (i + 1) + ". " + nome }, svg);
-    const sc = el("g", { class: "scale" }, g);
-    const id = "clip" + i;
-    el("circle", { cx: x, cy: y, r: RN - 3 }, el("clipPath", { id }, defs));
-    el("circle", { class: "disc", cx: x, cy: y, r: RN }, sc);
-    const ic = el("svg", { class: "ico", viewBox: "0 0 24 24", x: x - 15, y: y - 15, width: 30, height: 30 }, sc);
-    el("use", { href: "#i" + (i + 1) }, ic);
-    const ox = x + (x - C) / R * (RN + 24), oy = y + (y - C) / R * (RN + 24) + 4;
-    el("text", { class: "num", x: ox, y: oy }, svg).textContent = String(i + 1).padStart(2, "0");
-    g.addEventListener("mouseenter", () => ativar(i, true));
-    g.addEventListener("focus", () => ativar(i, true));
-    g.addEventListener("click", () => ativar(i, true));
-    nodes.push(g);
+    const c = document.createElement("article");
+    c.className = "hs-card" + (i % 2 ? " dark" : "");
+    c.innerHTML = '<span class="tag"></span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i' + (i + 1) + '"/></svg></span><h3></h3><p></p><span class="big">' + String(i + 1).padStart(2, "0") + '</span>';
+    c.querySelector(".tag").textContent = z === "superficie" ? "Na superfície" : "Na profundidade";
+    c.querySelector("h3").textContent = nome;
+    c.querySelector("p").textContent = TEXTOS[i];
+    track.append(c);
   });
-  const info = document.createElement("div");
-  info.className = "wheel-info"; info.setAttribute("aria-live", "polite");
-  info.innerHTML = '<span class="c-zone"></span><strong class="c-num"></strong><span class="c-name"></span>';
-  wheel.append(info);
-  const cz = info.querySelector(".c-zone"), cn = info.querySelector(".c-num"), nome = info.querySelector(".c-name");
+  const sec = document.getElementById("detalhes"), vp = document.getElementById("hs-viewport"), prog = document.getElementById("hs-prog");
+  const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let maxX = 0, ativo = false;
+  function medir() {
+    const sticky = sec.querySelector(".hs-sticky");
+    maxX = Math.max(0, track.scrollWidth - window.innerWidth);
+    if (reduzido || maxX < 40) { sec.classList.remove("pinned"); sec.style.height = ""; track.style.transform = ""; ativo = false; return; }
+    sec.classList.add("pinned"); ativo = true;
+    sec.style.height = (maxX + window.innerHeight) + "px";
+    atualizar();
+  }
+  function progresso() {
+    const r = sec.getBoundingClientRect(), total = sec.offsetHeight - window.innerHeight;
+    return Math.min(1, Math.max(0, -r.top / Math.max(1, total)));
+  }
+  function atualizar() {
+    const p = ativo ? progresso() : vp.scrollLeft / Math.max(1, vp.scrollWidth - vp.clientWidth);
+    if (ativo) track.style.transform = "translate3d(" + (-maxX * p).toFixed(1) + "px,0,0)";
+    prog.style.width = (8 + 92 * p).toFixed(1) + "%";
+  }
+  function ir(dir) {
+    const passo = 360 / Math.max(1, maxX);
+    if (ativo) {
+      const total = sec.offsetHeight - window.innerHeight, topo = sec.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: topo + Math.min(1, Math.max(0, progresso() + dir * passo)) * total, behavior: "smooth" });
+    } else vp.scrollBy({ left: dir * 360, behavior: "smooth" });
+  }
+  document.getElementById("hs-prev").addEventListener("click", () => ir(-1));
+  document.getElementById("hs-next").addEventListener("click", () => ir(1));
+  addEventListener("scroll", atualizar, { passive: true });
+  vp.addEventListener("scroll", () => { if (!ativo) atualizar(); }, { passive: true });
+  addEventListener("resize", medir);
+  addEventListener("load", medir);
+  medir();
+})();
 
-  let atual = 0, timer = null, pausado = false;
-  function ativar(i, manual) {
-    atual = i;
-    nodes.forEach((n, k) => n.classList.toggle("on", k === i));
-    const [t, z] = PILARES[i];
-    cz.textContent = z === "superficie" ? "Na superfície" : "Na profundidade";
-    cz.className = "c-zone" + (z === "superficie" ? "" : " pro");
-    cn.textContent = String(i + 1).padStart(2, "0");
-    nome.textContent = t;
-    if (manual) { clearInterval(timer); timer = null; }
-  }
-  function iniciar() {
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    timer = setInterval(() => { if (!pausado) ativar((atual + 1) % PILARES.length); }, 2800);
-  }
-  wheel.addEventListener("mouseenter", () => pausado = true);
-  wheel.addEventListener("mouseleave", () => { pausado = false; if (!timer) iniciar(); });
-  ativar(0); iniciar();
+// Cena dos 12 pilares: layout da referência, ícones fora da imagem
+(function () {
+  const stage = document.getElementById("stage"), info = document.getElementById("stage-info"), grade = document.getElementById("stage-grid");
+  const CURTOS = ["Genética e epigenética", "Conflitos emocionais", "Toxinas ambientais", "Hidratação e água", "Metais tóxicos", "Saúde gastrointestinal", "Fungos e parasitas", "Carências nutricionais", "Imunidade e circulação", "Saúde mitocondrial", "Tríade hormonal", "Conflitos sistêmicos"];
+  // [x do ícone, y do ícone, x do ponto, y do ponto] numa grade de 1600 x 900
+  const POS = [
+    [520, 195, 575, 305], [660, 100, 690, 235], [940, 100, 910, 235], [1080, 195, 1025, 305],
+    [380, 470, 610, 490], [430, 595, 625, 600], [490, 715, 660, 715], [620, 820, 720, 790],
+    [1220, 470, 990, 490], [1170, 595, 985, 600], [1110, 715, 950, 715], [980, 820, 900, 790]
+  ];
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("class", "lines"); svg.setAttribute("viewBox", "0 0 1600 900"); svg.setAttribute("aria-hidden", "true");
+  stage.prepend(svg);
+  const nodes = [];
+  const mostrar = i => {
+    info.querySelector("b").textContent = (i + 1) + ". " + PILARES[i][0];
+    info.querySelector("span").textContent = TEXTOS[i];
+    grade.querySelectorAll("button").forEach((b, k) => b.classList.toggle("on", k === i));
+  };
+  PILARES.forEach(([nome], i) => {
+    const [x, y, tx, ty] = POS[i], surf = i < 4, ly = surf ? y + 36 : y + 36;
+    const ln = document.createElementNS(svgNS, "line");
+    ln.setAttribute("x1", x); ln.setAttribute("y1", y); ln.setAttribute("x2", tx); ln.setAttribute("y2", ty);
+    ln.setAttribute("stroke", "#00dcc0"); ln.setAttribute("stroke-width", "2"); ln.setAttribute("opacity", ".85");
+    svg.append(ln);
+    const c = document.createElementNS(svgNS, "circle");
+    c.setAttribute("cx", tx); c.setAttribute("cy", ty); c.setAttribute("r", "7"); c.setAttribute("fill", "#00dcc0");
+    svg.append(c);
+    const n = document.createElement("div");
+    n.className = "node" + (x < 450 ? " l" : x > 1150 ? " r" : "") + (y > 650 ? " up" : "");
+    n.style.left = (x / 16).toFixed(2) + "%"; n.style.top = (y / 9).toFixed(2) + "%";
+    n.innerHTML = '<button class="dot" type="button" aria-label="' + (i + 1) + ". " + nome + '"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i' + (i + 1) + '"/></svg><em>' + (i + 1) + '</em></button><span class="lab"></span><div class="pop" role="tooltip"><b></b><span></span></div>';
+    n.querySelector(".lab").textContent = (i + 1) + ". " + CURTOS[i];
+    n.querySelector(".pop b").textContent = (i + 1) + ". " + nome;
+    n.querySelector(".pop span").textContent = TEXTOS[i];
+    n.addEventListener("mouseenter", () => mostrar(i));
+    n.addEventListener("focusin", () => mostrar(i));
+    n.querySelector(".dot").addEventListener("click", () => {
+      const abrir = !n.classList.contains("open");
+      nodes.forEach(o => o.classList.remove("open"));
+      if (abrir) n.classList.add("open");
+      mostrar(i);
+    });
+    stage.append(n); nodes.push(n);
+    const g = document.createElement("button");
+    g.type = "button"; g.setAttribute("aria-label", (i + 1) + ". " + nome);
+    g.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i' + (i + 1) + '"/></svg>';
+    g.addEventListener("click", () => mostrar(i));
+    grade.append(g);
+  });
+  document.addEventListener("click", e => { if (!e.target.closest(".node")) nodes.forEach(o => o.classList.remove("open")); });
 })();
 // Elementos surgem ao rolar a página
 (function () {
-  const alvos = [".hero-text > *", ".vsl", ".hero-cta", ".head > *", ".wheel", ".zone > header", ".pillar", ".trust li",
+  const alvos = [".hero-text > *", ".vsl", ".hero-cta", ".head > *", ".stage", ".trust li",
     ".table-wrap", ".offer .center", ".card", ".step", ".cta .wrap > *", "footer .wrap > *"];
   const els = [];
   alvos.forEach(sel => document.querySelectorAll(sel).forEach(e => {

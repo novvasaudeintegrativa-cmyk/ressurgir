@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 64" role="img" aria-label="Ressurgir: Desparasitação Absoluta">
+  <g>
+    <circle cx="32" cy="32" r="31" fill="#00262c"/>
+    <!-- acima da água: picos facetados -->
+    <path d="M10 33 L20 19 L27 26 L22 33 Z" fill="#4fe6d0"/>
+    <path d="M27 26 L35 7 L36 24 L31 33 L22 33 Z" fill="#00dcc0"/>
+    <path d="M35 7 L46 24 L55 33 L31 33 L36 24 Z" fill="#8ff3e2"/>
+    <path d="M35 7 L41 17 L36 19 Z" fill="#ffffff" opacity=".7"/>
+    <path d="M45 23 L55 33 H44 Z" fill="#00a99d"/>
+    <!-- linha d'água -->
+    <path d="M8 36 H56" stroke="#00dcc0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="1 4"/>
+    <!-- abaixo da água: massa maior e recortada -->
+    <path d="M12 39 L32 39 L28 52 L22 57 L17 47 Z" fill="#00a99d"/>
+    <path d="M32 39 L45 39 L36 61 L28 52 Z" fill="#007f86"/>
+    <path d="M45 39 L53 39 L48 47 L41 51 L36 61 Z" fill="#00545c"/>
+    <path d="M12 39 L22 39 L20 46 Z" fill="#ffffff" opacity=".18"/>
+  </g>
+  <text x="78" y="39" font-family="Outfit, 'Segoe UI', system-ui, sans-serif" font-size="34" font-weight="700" letter-spacing="-1" fill="#00262c">Ressurgir<tspan fill="#00a99d">:</tspan></text>
+  <text x="79" y="56" font-family="Outfit, 'Segoe UI', system-ui, sans-serif" font-size="13" font-weight="300" letter-spacing="2.2" fill="#4c6b6e">DESPARASITAÇÃO ABSOLUTA</text>
+</svg>
