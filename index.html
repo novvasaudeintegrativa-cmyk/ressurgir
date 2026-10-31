@@ -298,6 +298,11 @@ footer .logo .lw > span { color: var(--accent); }
 .hs-top .hs-ctrl button { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--brand-strong); background: #fff; color: var(--brand-strong); font-size: 20px; cursor: pointer; }
 .hs-top .hs-ctrl button:hover { background: var(--brand-strong); color: #fff; }
 .hero { padding-bottom: clamp(88px, 11vw, 150px); }
+
+html, body { overflow-x: clip; }
+.hscroll { overflow-x: clip; }
+.hs-sticky .hs-title { position: relative; isolation: isolate; }
+.hs-sticky .hs-title::before { content: "12"; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: -1; font: 800 clamp(220px, 30vw, 440px)/.8 var(--font); letter-spacing: -.05em; color: var(--brand-strong); opacity: .09; pointer-events: none; white-space: nowrap; }
 </style>
 </head>
 <body>
