@@ -574,7 +574,7 @@ const TEXTOS = [
   svg.append(anel);
   stage.prepend(svg);
   // pontos de luz da imagem (cor da luz de cada um), posição em % da cena
-  const LUZES = [["#b866ff", 27.5, 34.5], ["#6a5cff", 29.9, 36.4], ["#3aa0ff", 35.3, 41.8], ["#3df06a", 39.2, 44.7], ["#ffe23a", 43.7, 48.6], ["#ff9a2e", 47.5, 52.0], ["#ff3b3b", 51.0, 55.1]];
+  const LUZES = [["#b866ff", 27.5, 34.5], ["#9a2cff", 29.9, 36.4], ["#3aa0ff", 35.3, 41.8], ["#3df06a", 39.2, 44.7], ["#ffe23a", 43.7, 48.6], ["#ff9a2e", 47.5, 52.0], ["#ff3b3b", 51.0, 55.1]];
   LUZES.forEach(([cor, yd, ym], k) => {
     const l = document.createElement("span");
     l.className = "luz"; l.style.setProperty("--c", cor); l.style.setProperty("--k", k);
