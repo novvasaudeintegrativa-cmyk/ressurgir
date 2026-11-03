@@ -202,7 +202,7 @@ nav .btn-primary:hover, .hero .btn-primary:hover, .cta .btn-primary:hover { back
 .stage-grid, .stage-info { display: none; }
 .stage .zt { display: none; position: absolute; left: 4%; font: 700 10px var(--font); letter-spacing: .14em; color: var(--brand); text-shadow: 0 1px 6px rgba(0, 0, 0, .7); }
 @media (max-width: 760px) {
-  #pilares { background: #00454d url("assets/cena-mobile-final.jpg") center / cover no-repeat; }
+  #pilares { background: #00454d url("assets/cena-mobile-zoom.jpg") center / cover no-repeat; }
   .stage { aspect-ratio: 9 / 16; }
   .stage svg.lines, .stage .blk, .node .pop, .stage-grid, .stage-info { display: none; }
   .node { left: var(--mx) !important; top: var(--my) !important; transform: translate(-50%, 0); pointer-events: none; }
@@ -318,7 +318,7 @@ html, body { overflow-x: clip; }
 .luz { position: absolute; left: var(--lx, 50%); top: var(--ly); width: 2.4cqw; height: 2.4cqw; margin: -1.2cqw 0 0 -1.2cqw; border-radius: 50%; background: radial-gradient(circle, #fff 0 12%, var(--c) 30%, transparent 70%); mix-blend-mode: screen; opacity: 0; transform: scale(.6); pointer-events: none; z-index: 1; }
 .js .stage.go .luz { animation: pisca 6.3s ease-in-out infinite; animation-delay: calc(var(--k) * .9s); }
 @keyframes pisca { 0% { opacity: 0; transform: scale(.6); } 6% { opacity: 1; transform: scale(1.7); } 14% { opacity: .55; transform: scale(1.15); } 22% { opacity: .9; transform: scale(1.5); } 34% { opacity: 0; transform: scale(.6); } 100% { opacity: 0; transform: scale(.6); } }
-@media (max-width: 760px) { .luz { left: var(--lxm, 49.5%); top: var(--lym); width: 7cqw; height: 7cqw; margin: -3.5cqw 0 0 -3.5cqw; } }
+@media (max-width: 760px) { .luz { left: var(--lxm, 50%); top: var(--lym); width: 7cqw; height: 7cqw; margin: -3.5cqw 0 0 -3.5cqw; } }
 @media (prefers-reduced-motion: reduce) { .js .stage.go .luz { animation: none; opacity: .5; transform: scale(1); } }
 </style>
 </head>
@@ -380,7 +380,7 @@ html, body { overflow-x: clip; }
   <div class="stage" id="stage" role="group" aria-label="Os 12 pilares do terreno biológico">
     <div class="tx"><h3>Os <b>12 Pilares</b><em>do Terreno Biológico</em></h3><i></i><p>Além do que se vê, o que realmente importa.</p></div>
     <div class="blk" style="top:14%"><b>Na superfície</b><span>Apenas parte do quadro aparece.</span></div>
-    <span class="zt" style="top:13%">NA SUPERFÍCIE</span><span class="zt" style="top:38%">NA PROFUNDIDADE</span>
+    <span class="zt" style="top:14.5%">NA SUPERFÍCIE</span><span class="zt" style="top:54%">NA PROFUNDIDADE</span>
     <div class="blk" style="top:55%"><b>Na profundidade</b><span>Muitas causas ficam ocultas e não são investigadas.</span></div>
   </div>
 </section>
@@ -574,7 +574,7 @@ const TEXTOS = [
   svg.append(anel);
   stage.prepend(svg);
   // pontos de luz da imagem (cor da luz de cada um), posição em % da cena
-  const LUZES = [["#b866ff", 28, 24], ["#6a5cff", 31.5, 26.2], ["#3aa0ff", 35.6, 29.5], ["#3df06a", 39.2, 31.7], ["#ffe23a", 44, 34.6], ["#ff9a2e", 47.3, 37], ["#ff3b3b", 51, 39.5]];
+  const LUZES = [["#b866ff", 27.5, 34.5], ["#6a5cff", 29.9, 36.4], ["#3aa0ff", 35.3, 41.8], ["#3df06a", 39.2, 44.7], ["#ffe23a", 43.7, 48.6], ["#ff9a2e", 47.5, 52.0], ["#ff3b3b", 51.0, 55.1]];
   LUZES.forEach(([cor, yd, ym], k) => {
     const l = document.createElement("span");
     l.className = "luz"; l.style.setProperty("--c", cor); l.style.setProperty("--k", k);
@@ -582,7 +582,7 @@ const TEXTOS = [
     stage.append(l);
   });
   const nodes = [];
-  const MOB = [[13, 17], [33, 17], [67, 17], [87, 17], [14, 42], [14, 52], [14, 62], [14, 72], [86, 42], [86, 52], [86, 62], [86, 72]];
+  const MOB = [[13, 22], [37, 22], [63, 22], [87, 22], [13, 58], [13, 67], [13, 76], [13, 85], [87, 58], [87, 67], [87, 76], [87, 85]];
   const mostrar = () => {};
   PILARES.forEach(([nome], i) => {
     const [x, y, tx, ty] = POS[i], surf = i < 4, ly = surf ? y + 36 : y + 36;
