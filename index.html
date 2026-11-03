@@ -321,6 +321,19 @@ html, body { overflow-x: clip; }
 @media (max-width: 760px) { .luz { left: var(--lxm, 50%); top: var(--lym); width: 7cqw; height: 7cqw; margin: -3.5cqw 0 0 -3.5cqw; } }
 @media (prefers-reduced-motion: reduce) { .js .stage.go .luz { animation: none; opacity: .5; transform: scale(1); } }
 .luz.roxa { width: 2.1cqw; height: 2.1cqw; margin: -1.05cqw 0 0 -1.05cqw; mix-blend-mode: normal; background: radial-gradient(circle, #f0d0ff 0 9%, #b44dff 22%, var(--c) 46%, rgba(122, 0, 230, 0) 72%); filter: drop-shadow(0 0 .4cqw #9b2cff) drop-shadow(0 0 .8cqw #7a00e6); }
+
+/* Tabela de oferta no celular: cada linha vira um cartão, sem rolagem lateral */
+@media (max-width: 640px) {
+  .table-wrap { overflow: visible; border: 0; background: transparent; }
+  .table-wrap table { min-width: 0; display: block; }
+  .table-wrap thead { display: none; }
+  .table-wrap tbody { display: grid; gap: 12px; }
+  .table-wrap tr { display: grid; gap: 6px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+  .table-wrap tr:last-child td { border-bottom: 0; }
+  .table-wrap td { display: flex; align-items: baseline; gap: 12px; justify-content: space-between; padding: 0; border: 0; text-align: right; }
+  .table-wrap td::before { content: attr(data-l); flex: none; font: 700 11px/1.6 var(--font); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: left; }
+  .table-wrap td:first-child { font-weight: 600; }
+}
 </style>
 </head>
 <body>
@@ -421,9 +434,9 @@ html, body { overflow-x: clip; }
       <table>
         <thead><tr><th>Item</th><th>Descrição</th><th>Valor</th></tr></thead>
         <tbody>
-          <tr><td>Ressurgir: Os 12 Pilares do Terreno Biológico</td><td>Método completo</td><td class="v">R$ —</td></tr>
-          <tr><td>Bônus</td><td class="pend">A definir</td><td class="v">—</td></tr>
-          <tr><td>Garantia</td><td class="pend">A definir</td><td class="v">—</td></tr>
+          <tr><td data-l="Item">Ressurgir: Os 12 Pilares do Terreno Biológico</td><td data-l="Descrição">Método completo</td><td class="v" data-l="Valor">R$ —</td></tr>
+          <tr><td data-l="Item">Bônus</td><td class="pend" data-l="Descrição">A definir</td><td class="v" data-l="Valor">—</td></tr>
+          <tr><td data-l="Item">Garantia</td><td class="pend" data-l="Descrição">A definir</td><td class="v" data-l="Valor">—</td></tr>
         </tbody>
       </table>
     </div>
