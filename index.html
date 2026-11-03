@@ -320,6 +320,7 @@ html, body { overflow-x: clip; }
 @keyframes pisca { 0% { opacity: 0; transform: scale(.6); } 6% { opacity: 1; transform: scale(1.7); } 14% { opacity: .55; transform: scale(1.15); } 22% { opacity: .9; transform: scale(1.5); } 34% { opacity: 0; transform: scale(.6); } 100% { opacity: 0; transform: scale(.6); } }
 @media (max-width: 760px) { .luz { left: var(--lxm, 50%); top: var(--lym); width: 7cqw; height: 7cqw; margin: -3.5cqw 0 0 -3.5cqw; } }
 @media (prefers-reduced-motion: reduce) { .js .stage.go .luz { animation: none; opacity: .5; transform: scale(1); } }
+.luz.roxa { width: 3.4cqw; height: 3.4cqw; margin: -1.7cqw 0 0 -1.7cqw; background: radial-gradient(circle, #e9b0ff 0 10%, var(--c) 32%, transparent 72%); }
 </style>
 </head>
 <body>
@@ -574,10 +575,10 @@ const TEXTOS = [
   svg.append(anel);
   stage.prepend(svg);
   // pontos de luz da imagem (cor da luz de cada um), posição em % da cena
-  const LUZES = [["#b866ff", 27.5, 34.5], ["#9a2cff", 29.9, 36.4], ["#3aa0ff", 35.3, 41.8], ["#3df06a", 39.2, 44.7], ["#ffe23a", 43.7, 48.6], ["#ff9a2e", 47.5, 52.0], ["#ff3b3b", 51.0, 55.1]];
+  const LUZES = [["#b866ff", 27.5, 34.5], ["#a100ff", 29.9, 36.4], ["#3aa0ff", 35.3, 41.8], ["#3df06a", 39.2, 44.7], ["#ffe23a", 43.7, 48.6], ["#ff9a2e", 47.5, 52.0], ["#ff3b3b", 51.0, 55.1]];
   LUZES.forEach(([cor, yd, ym], k) => {
     const l = document.createElement("span");
-    l.className = "luz"; l.style.setProperty("--c", cor); l.style.setProperty("--k", k);
+    l.className = "luz" + (k === 1 ? " roxa" : ""); l.style.setProperty("--c", cor); l.style.setProperty("--k", k);
     l.style.setProperty("--ly", yd + "%"); l.style.setProperty("--lym", ym + "%");
     stage.append(l);
   });
