@@ -359,7 +359,7 @@ Marca em vetor, feita para parecer um iceberg: picos nevados facetados acima da 
 | Arquivo | Uso |
 | --- | --- |
 | `assets/logo-marca.svg` | Só o símbolo (64 × 64). Ícone do site (favicon), perfil de rede social, menu |
-| `assets/logo.svg` | Símbolo + "Ressurgir:" + "Desparasitação Absoluta", para fundo claro |
+| `assets/logo.svg` | Símbolo + "Ressurgir:" + "Os 12 Pilares do Terreno Biológico", para fundo claro |
 | `assets/logo-claro.svg` | A mesma versão horizontal para fundo teal escuro |
 
 - Cores do símbolo: círculo `#00262C`; picos `#4FE6D0`, `#00DCC0`, `#8FF3E2`, `#00A99D`; massa submersa `#00A99D`, `#007F86`, `#00545C`.

@@ -150,8 +150,8 @@ footer { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-betwee
     <div class="title-row">
       <input id="titulo" list="nomes" placeholder="Digite o nome do produto" aria-label="Nome do produto" autocomplete="off">
       <datalist id="nomes">
-        <option value="Ressurgir: BioReset Desparasitação"></option>
-        <option value="Ressurgir: BioReset Desparasitação — Os 12 Pilares do Terreno Biológico"></option>
+        <option value="[Low Ticket] Desparatização Descomplicada em 30 dias"></option>
+        <option value="[High Ticket] Ressurgir: Os 12 Pilares do Terreno Biológico"></option>
         <option value="Ressurgir: Desparasitação Absoluta — Os 12 Pilares do Terreno Biológico"></option>
         <option value="Ressurgir: Desparasitação Absoluta — Método Equilíbrio e Revitalização"></option>
         <option value="Ressurgir Integrativo: Desparasitação Absoluta — Método Renovação e Bem-Estar"></option>
@@ -185,10 +185,11 @@ footer { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-betwee
         <option>Produção de conteúdo</option>
         <option>Etapa 1 — Meta Ads</option>
         <option>Etapa 2 — Google Ads</option>
+        <option>Etapa 3 — TikTok Ads</option>
         <option>Carrinho aberto</option>
         <option>Encerrado</option>
       </select>
-      <span class="sub">Meta Ads primeiro; Google Ads depois que o Meta estiver rodando.</span>
+      <span class="sub">Meta Ads primeiro; Google Ads e TikTok Ads depois que o Meta estiver rodando.</span>
     </div>
   </section>
 
@@ -253,7 +254,7 @@ const AREAS = [
     "Tags e campos personalizados", "Automações configuradas", "Fluxos de nutrição", "E-mails automáticos",
     "Integração com WhatsApp", "Recuperação de leads parados", "Acompanhamento dos leads no funil"] },
   { id: "trafego", nome: "Tráfego pago", objetivo: "Atrair pessoas qualificadas e gerar demanda.", itens: [
-    "Plano de mídia e distribuição de orçamento", "Meta Ads configurado", "Google Ads configurado",
+    "Plano de mídia e distribuição de orçamento", "Meta Ads configurado", "Google Ads configurado", "TikTok Ads configurado",
     "Campanhas de reconhecimento", "Campanhas de captação de leads", "Campanhas de remarketing",
     "Campanhas de aquecimento de audiência", "Campanhas de conversão", "Testes A/B de criativos, públicos e anúncios",
     "Otimização contínua", "Análise de CPL, CPA, CTR, CPC e ROAS", "Relatórios de desempenho"] },
@@ -307,7 +308,13 @@ const FASES = [
     "Conta Google Ads configurada", "Integração com GA4 e GTM", "Conversões configuradas",
     "Campanhas de Pesquisa (Search)", "Campanhas de Display", "Campanhas de YouTube",
     "Estratégias de remarketing", "Anúncios e extensões", "Otimização de palavras-chave e termos",
-    "Controle de orçamento e lances", "Monitoramento de CPL, CPA e conversões"] }
+    "Controle de orçamento e lances", "Monitoramento de CPL, CPA e conversões"] },
+  { id: "tiktok", nome: "Etapa 3 — TikTok Ads", objetivo: "Chegar a quem consome vídeo curto, com o Meta e o Google já rodando.", itens: [
+    "Análise do público e das tendências na plataforma", "Planejamento das campanhas", "TikTok Business Center configurado",
+    "Conta de anúncios configurada", "TikTok Pixel instalado", "Events API (conversões pelo servidor)",
+    "Eventos de conversão validados", "Públicos personalizados", "Públicos semelhantes (Lookalike)",
+    "Campanhas de captação de leads", "Campanhas de reconhecimento e aquecimento", "Campanhas de remarketing",
+    "Criativos em vídeo vertical e copies", "Testes A/B de criativos e públicos", "Monitoramento e otimização contínua"] }
 ];
 
 // menor = melhor para custos; maior = melhor para taxas e retorno

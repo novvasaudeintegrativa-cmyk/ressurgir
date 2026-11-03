@@ -42,7 +42,7 @@ body{width:1080px;height:1350px;position:relative;overflow:hidden;font-family:Ou
 .logo-topo img{width:70px;height:70px}
 .logo-topo span{font-size:34px;font-weight:700;line-height:1.05;letter-spacing:-.01em}
 .logo-topo span b{color:#00dcc0}
-.logo-topo span small{display:block;font-size:17px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;opacity:.85;margin-top:4px}
+.logo-topo span small{display:block;font-size:17px;font-weight:300;letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin-top:4px}
 .chip{display:inline-block;border:2px solid #00dcc0;border-radius:99px;padding:10px 28px;font-size:28px;font-weight:400;color:#00dcc0;background:rgba(0,38,44,.45)}
 h1{margin-top:34px;font-weight:800;line-height:1.02;letter-spacing:-.025em;text-shadow:0 4px 30px rgba(0,25,30,.55)}
 h1 em{font-style:normal;color:#00dcc0}
@@ -70,7 +70,7 @@ def pagina(corpo_html, fundo_css, extra_css=""):
 
 
 LOGO = ('<div class="logo-topo"><img src="file:///' + str(RAIZ / "assets/logo-marca.svg").replace("\\", "/") + '">'
-        '<span>Ressurgir<b>:</b><small>Desparasitação Absoluta</small></span></div>')
+        '<span>Ressurgir<b>:</b><small>Os 12 Pilares do Terreno Biológico</small></span></div>')
 
 
 def rodape(n, ultimo=False):
@@ -103,7 +103,7 @@ slides = []
 foto = (RAIZ / "assets/cena-mobile-final.jpg").as_posix()
 corpo = (
     '<div class="topo" style="text-align:center;top:70px"><div style="font-size:54px;font-weight:700;letter-spacing:-.02em">Ressurgir<span style="color:#00dcc0">:</span></div>'
-    '<div style="font-size:26px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;opacity:.85;margin-top:4px">Desparasitação Absoluta</div>'
+    
     '<div style="margin-top:34px"><span class="chip">Terreno Biológico</span></div>'
     '<h1 style="font-size:104px;font-weight:300;margin-top:26px">Os <b style="font-weight:800;color:#00dcc0">12 pilares</b><br>do terreno biológico</h1></div>'
     '<div class="rodape" style="justify-content:flex-end"><div class="dir">Deslize<div class="seta">&rarr;</div></div></div>'
@@ -152,7 +152,7 @@ corpo = (
     '<div style="position:absolute;left:-220px;top:-220px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(0,220,192,.4),rgba(0,220,192,0) 70%)"></div>'
     '<div class="topo" style="top:300px"><span class="chip">Os 12 pilares do terreno biológico</span>'
     '<h1 style="font-size:96px;font-weight:300">Olhe além<br>da <b style="font-weight:800;color:#00dcc0">superfície</b></h1>'
-    '<div style="margin-top:34px;font-size:40px;font-weight:300;line-height:1.4;opacity:.9">Ressurgir: Desparasitação Absoluta</div></div>'
+    '<div style="margin-top:34px;font-size:40px;font-weight:300;line-height:1.4;opacity:.9">Ressurgir: Os 12 Pilares do Terreno Biológico</div></div>'
     f'<div style="position:absolute;left:84px;bottom:230px;display:flex;align-items:center;gap:18px"><div class="seta" style="width:56px;height:56px">{seta_b}</div>'
     '<div style="font-size:34px;font-weight:600;letter-spacing:-.01em">Toque em <span style="color:#00dcc0">saiba mais</span></div></div>'
     + rodape(14, ultimo=True)
